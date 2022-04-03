@@ -161,8 +161,37 @@ if ($mode == 'gestion_modifier')  {
 }
 
 $Pays = getPays();
-	
+
+// Exactement commen dans personne/ajouter.php
+if(!isset($assoc))
+    $assoc = new association();
 $selectProspect = isSelected($assoc->prospect,'checkbox');
+
+if(!isset($commentaires))
+    $commentaires = array();
+
+$attributs_commentaires = array("association_type", "numero_dossier", "numero_convention", "nom", "sigle",
+    "numero_adherent", "association_activites", "date_declaration_jo", "numero_siret", "code_ape_naf",
+    "adresse", "code_postal", "telephone_fixe", "telephone_mobile", "fax", "courriel", "mdp_clair", "mdp", "logo");
+$attributs_requis = array("numero_dossier", "adresse", "mdp");
+foreach($attributs_commentaires as $attr)
+    if(!isset($commentaires[$attr]))
+        $commentaires[$attr] = "";
+foreach($attributs_requis as $attr)
+    if(!isset($requis[$attr]))
+        $requis[$attr] = "";
+
+// TODO: trouver dans quelle partie du fichier la variable $requis est initialisée
+$attributs_legendes = array("numero_adherent");
+foreach($attributs_legendes as $attr)
+    if(!isset($legendes[$attr]))
+        $legendes[$attr] = "";
+
+
+
+
+
+
 
 // Récupération des contenus des menus
 $Activites = getActivites(array($assoc->association_activites));
