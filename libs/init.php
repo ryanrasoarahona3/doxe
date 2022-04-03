@@ -1,7 +1,12 @@
 <?php
 #See CERCLE_CONFIGURATION
-ini_set('session.cookie_domain', '.cercledesbenevoles.fr' );
-session_set_cookie_params( 3600, '/', '.cercledesbenevoles.fr' );
+
+// Ce bout de code doit être révisé
+// De même que la structure globale du projet
+if(session_status() == PHP_SESSION_NONE){
+    ini_set('session.cookie_domain', '.cercledesbenevoles.fr' );
+    session_set_cookie_params( 3600, '/', '.cercledesbenevoles.fr' );
+}
 if (!isset($_SESSION)) session_start();
 
 define('WEBROOT',str_replace('index.php','',$_SERVER['SCRIPT_NAME']));
