@@ -114,7 +114,35 @@ if ($mode == 'site_ajouter') {
 // Morceau de code ajouté afin d'éviter les messages d'avertissement sur /personnes/ajouter
 if(!isset($perso))
     $perso = new personne();
+if(!isset($commentaires))
+    $commentaires = array();
 
+// Il se peut qu'il y a un oubli d'inclusion (revoir la structure de l'application)
+$attributs_commentaires = array("civilite", "nom", "prenom", "nom_jeune_fille", "date_naissance", "mdp", "adresse", "pays",
+    "pays", "code_postal", "code_pays", "ville_pays", "telephone_fixe", "telephone_mobile", "courriel", "profession", "portrait",
+    "presse", "elu");
+// TODO: type utilisé pour ces variables
+$requis_attributes = array("prenom", "nom_jeune_fille", "mdp");
+foreach($attributs_commentaires as $attr)
+    if(!isset($commentaires[$attr]))
+        $commentaires[$attr] = "";
+foreach($requis_attributes as $attr)
+    if(!isset($requis[$attr]))
+        $requis[$attr] = "";
+
+
+// Newsletter OUI/NON
+// TODO: comment ça fonctionne
+if(!isset($newsletterOui))
+    $newsletterOui = "";
+if(!isset($newsletterNon))
+    $newsletterNon = "";
+
+// Prospect OUI/NON
+if(!isset($prospectOui))
+    $prospectOui = "";
+if(!isset($prospectNon))
+    $prospectNon = "";
 
 $selectProspect = isSelected($perso->prospect,'checkbox');
 
@@ -232,6 +260,7 @@ try {
 	} catch (Exception $e) {
 	  echo 'Erreur de lecture de la base : ', $e->getMessage();
 	}
+
 
 
 // Inclusion affichage
