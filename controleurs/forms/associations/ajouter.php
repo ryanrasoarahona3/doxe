@@ -173,7 +173,7 @@ if(!isset($commentaires))
 $attributs_commentaires = array("association_type", "numero_dossier", "numero_convention", "nom", "sigle",
     "numero_adherent", "association_activites", "date_declaration_jo", "numero_siret", "code_ape_naf",
     "adresse", "code_postal", "telephone_fixe", "telephone_mobile", "fax", "courriel", "mdp_clair", "mdp", "logo");
-$attributs_requis = array("numero_dossier", "adresse");
+$attributs_requis = array("numero_dossier", "adresse", "mdp");
 foreach($attributs_commentaires as $attr)
     if(!isset($commentaires[$attr]))
         $commentaires[$attr] = "";
