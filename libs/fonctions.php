@@ -9,19 +9,19 @@ function connect() {
 	try {
 	  $dns = 'mysql:host='.HOST.';dbname='.DBNAME.'';
 	  $utilisateur = USER;
-	  $motDePasse = PASS;
+	  $motDePasse = '';
  
 	  // Options de connection
-	  $options = array(
-		PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8",
-		PDO::ATTR_ERRMODE => "PDO::ERRMODE_EXCEPTION"
-	  );
+	//   $options = array(
+	// 	PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8",
+	// 	PDO::ATTR_ERRMODE => "PDO::ERRMODE_EXCEPTION"
+	//   );
  
 	  // Initialisation de la connection
-	  return new PDO( $dns, $utilisateur, $motDePasse, $options );
+	  return new PDO( $dns, $utilisateur, $motDePasse );
 	 // $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch ( Exception $e ) {
-	  echo "Connection à MySQL impossible : ", $e->getMessage();
+	  echo "Connection ï¿½ MySQL impossible : ", $e->getMessage();
 	  die();
 	}
 }
@@ -56,13 +56,13 @@ function getActivites ($selection=array(0)) {
 	
 	$req = "SELECT * FROM activites_categories ORDER BY nom ASC;";
 	
-	// Catégories
+	// Catï¿½gories
 	try {
 	  $requete = $connect->query($req);
 	  while( $element = $requete->fetch(PDO::FETCH_OBJ)){
 		if (!empty($element->nom)) $retour .= '<optgroup label="'.$element->nom.'">';
 		
-		// Activités
+		// Activitï¿½s
 		$req2 = "SELECT * FROM activites WHERE id_categorie='".$element->id."' ORDER BY nom ASC;";
 		try {
 		  $requete2 = $connect->query($req2);
@@ -95,7 +95,7 @@ function getDistinctionsDomaines ($selection=array(0)) {
 	
 	$req = "SELECT * FROM distinctions_domaines ORDER BY nom ASC;";
 	
-	// Catégories
+	// Catï¿½gories
 	try {
 	  $requete = $connect->query($req);
 	  while( $element = $requete->fetch(PDO::FETCH_OBJ)){
@@ -141,7 +141,7 @@ function getSelect($table, $selection=array(0), $schema = array('nom'),$id='id')
 	if (!is_array($selection)) $selection=array(0);
 	$retour = '';
 	$req = "SELECT * FROM ".$table;
-	if ($_SESSION['utilisateur']['siege'] == 0) { // Si délégué
+	if ($_SESSION['utilisateur']['siege'] == 0) { // Si dï¿½lï¿½guï¿½
 		if (($table == 'regions') && (!empty($_SESSION['utilisateur']['regions']) )) $req .= ' WHERE id  IN ('.lister($_SESSION['utilisateur']['regions']).') ';
 		if (($table == 'departements') && (!empty($_SESSION['utilisateur']['departements']) )) $req .= ' WHERE id  IN ('.lister($_SESSION['utilisateur']['departements']).') ';
 	}
@@ -167,7 +167,7 @@ function getSelect($table, $selection=array(0), $schema = array('nom'),$id='id')
 	
 	  }
 	  
-	 if ($_SESSION['utilisateur']['siege'] == 0) { // Si délégué et pas de séelection département ou région on ne retourne rien
+	 if ($_SESSION['utilisateur']['siege'] == 0) { // Si dï¿½lï¿½guï¿½ et pas de sï¿½election dï¿½partement ou rï¿½gion on ne retourne rien
 		if (($table == 'regions') && (empty($_SESSION['utilisateur']['regions']) )) return false;
 		if (($table == 'departements') && (empty($_SESSION['utilisateur']['departements']) )) return false;
 	}
@@ -443,13 +443,13 @@ function genererMdp ($longueur = 8, $simple=false){
     // initialiser la variable $mdp
     $mdp = "";
  
-    // Définir tout les caractères possibles dans le mot de passe, 
-    // Il est possible de rajouter des voyelles ou bien des caractères spéciaux
+    // Dï¿½finir tout les caractï¿½res possibles dans le mot de passe, 
+    // Il est possible de rajouter des voyelles ou bien des caractï¿½res spï¿½ciaux
     if (!$simple) $possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     else $possible = "abcdefghijklmnpqrstuvwxyz123456789";
  
-    // obtenir le nombre de caractères dans la chaîne précédente
-    // cette valeur sera utilisé plus tard
+    // obtenir le nombre de caractï¿½res dans la chaï¿½ne prï¿½cï¿½dente
+    // cette valeur sera utilisï¿½ plus tard
     $longueurMax = strlen($possible);
  
     if ($longueur > $longueurMax) {
@@ -459,20 +459,20 @@ function genererMdp ($longueur = 8, $simple=false){
     // initialiser le compteur
     $i = 0;
  
-    // ajouter un caractère aléatoire à $mdp jusqu'à ce que $longueur soit atteint
+    // ajouter un caractï¿½re alï¿½atoire ï¿½ $mdp jusqu'ï¿½ ce que $longueur soit atteint
     while ($i < $longueur) {
-        // prendre un caractère aléatoire
+        // prendre un caractï¿½re alï¿½atoire
         $caractere = substr($possible, mt_rand(0, $longueurMax-1), 1);
  
-        // vérifier si le caractère est déjà utilisé dans $mdp
+        // vï¿½rifier si le caractï¿½re est dï¿½jï¿½ utilisï¿½ dans $mdp
         if (!strstr($mdp, $caractere)) {
-            // Si non, ajouter le caractère à $mdp et augmenter le compteur
+            // Si non, ajouter le caractï¿½re ï¿½ $mdp et augmenter le compteur
             $mdp .= $caractere;
             $i++;
         }
     }
  
-    // retourner le résultat final
+    // retourner le rï¿½sultat final
     return $mdp;
 }
 
@@ -528,7 +528,7 @@ function traiteTexte ($str, $charset='utf-8')
     
     $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
     $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractï¿½res
     
     return strtolower($str);
 }
@@ -544,13 +544,13 @@ function traiteCherche($str) {
 function maj($chaine)
 {
 	$chaine=strtoupper($chaine);$chaine=utf8_decode($chaine);$chaine=trim($chaine);
-	$chaine = strtr($chaine, 'äâàáåãéèëêòóôõöøìíîïùúûüýñçþÿæ½ðø', 'ÄÂÀÁÅÃÉÈËÊÒÓÔÕÖØÌÍÎÏÙÚÛÜÝÑÇÞÝÆ¼ÐØ');
+	$chaine = strtr($chaine, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½');
 	$chaine=utf8_encode($chaine);
 	return $chaine;
 }
 function firstmaj($mot)
 {
-	$mot=trim($mot);$maj=$mot[0];$maj = strtr($maj,'äâàáåãéèëêòóôõöøìíîïùúûüýñçþÿæ½ðø', 'ÄÂÀÁÅÃÉÈËÊÒÓÔÕÖØÌÍÎÏÙÚÛÜÝÑÇÞÝÆ¼ÐØ');
+	$mot=trim($mot);$maj=$mot[0];$maj = strtr($maj,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½');
 	$mot = substr_replace($mot,$maj,0,1);
 	$mot=ucfirst($mot);
 	return $mot;
@@ -627,9 +627,9 @@ function cleanCp($cp) {
 function getDelegues($region,$departement,$pays,$type='personnes') {
 	$connect = connect();
 	
-	// Délégué de région
+	// Dï¿½lï¿½guï¿½ de rï¿½gion
 	
-	// Si le pays est France, c'est forcément une personne
+	// Si le pays est France, c'est forcï¿½ment une personne
 	if (($pays==ID_FRANCE) || ($type=='associations')) {
 		$req = "
 			SELECT personnes.delegue_type, 
@@ -664,7 +664,7 @@ function encode($filename,$path)
         $file = '<?php header("HTTP/1.0 404 Not Found"); die(); ?>' . "\n";
         $file .= base64_encode($data);
         
-        // Création nouveau fichier
+        // Crï¿½ation nouveau fichier
         $newfile = $path . $filename . '.pdf.php';
         $f       = fopen($newfile, 'w');
         fwrite($f, $file);
@@ -801,7 +801,7 @@ function securite($string)
 function paiement ($mode) {
 	switch ($mode) {
 		case 'commerce_cheque':
-				 	return 'Chèque';
+				 	return 'Chï¿½que';
 		break;
 		
 		case 'bank_transfer':
@@ -809,7 +809,7 @@ function paiement ($mode) {
 		break;
 		
 		default:
-				 	return 'Carte de crédit';
+				 	return 'Carte de crï¿½dit';
 		break;
 	}
 }
