@@ -1,5 +1,9 @@
 <?php
 
+// TODO: revoir le fonctionnement de la variable $auto
+// Normalement, c'est bon
+$auto = false; // valeur par défaut
+
 if (isset ($_GET['auto'])) {
 	$auto = true;
 	if (isset ($_GET['inscrit'])) $selection_inscrit=array($_GET['inscrit']);
