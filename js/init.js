@@ -11,8 +11,13 @@
 
 jQuery(function($) {
   //CERCLE_CONFIGURATION
+	// TODO: Supprimer
 	var gestion = 'http://gestion.cercledesbenevoles.fr/';
 	window.gestion = 'http://gestion.cercledesbenevoles.fr/';
+
+	// Fon
+	var gestion = location.protocol + '//' + location.host + "/";
+	window.gestion = gestion;
 
   window.ParsleyValidator.setLocale('fr');
 	var tooltips = $( "[title]" ).tooltip({
