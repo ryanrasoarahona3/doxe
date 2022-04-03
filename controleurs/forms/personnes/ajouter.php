@@ -61,6 +61,11 @@ if (!isGestion()) {
 }
 
 
+// TODO: revoir le fonctionnement de ce script
+$scripts = ""; // Valeur par défaut
+// TODO: très important: revoir ce script
+$timestamp = (new DateTime())->getTimestamp(); // Valeur par défaut
+
 // Ajout
 if ($mode == 'gestion_ajouter') {
 	$form->annulation = false;
@@ -149,6 +154,9 @@ $selectProspect = isSelected($perso->prospect,'checkbox');
 // Menu civilité
 $menuCivilite = menuCivilite($perso->civilite);
 
+// TODO: revoir le fonctionnement du script
+$masqueDelegue = ""; // Valeur par défaut
+$masqueRegions = ""; // Valeur par défaut
 
 // Menu délégué statut
 $menuDelegueStatut = '';
