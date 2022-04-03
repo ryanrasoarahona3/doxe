@@ -1,0 +1,49 @@
+<style type="text/Css">
+<!--
+page {
+	font-family:Arial;
+}
+table {
+	font-family:Arial;
+}
+-->
+</style>
+<page style="font-size: 14px;line-height:20px;" backtop="10mm" backbottom="20mm" backleft="10mm" backright="10mm">     
+	<page_footer>
+        <table style="width: 100%; border-top: solid 1px #0e72b5;">
+            <tr>
+                <td style="text-align: center;    width: 100%;padding:5px;color:#0e72b5;">{pied-de-page}</td>
+               
+            </tr>
+        </table>
+    </page_footer>
+ <table style="width: 100%; ">
+            <tr>
+              
+               	<td valign="top" align="center">
+               		<img src="{url}documents/images/header_a4.png" width="700">
+               		
+               	</td>
+            </tr>
+    </table>
+    
+  <table style="width: 100%; margin-top:25px;">
+            <tr>
+                <td valign="top" style="text-align: left;    width: 55%;">
+               		<h2 >FACTURE N° {numero-facture}</h2>  
+       	<br>
+      	{detail-facture} <br>       
+               </td>
+               
+                <td valign="top" style="text-align: left;    width: 45%;">
+               	{adresse}
+               </td>
+               
+            </tr>
+    </table>
+    
+
+<p>&nbsp;</p>
+
+{contenu}
+</page>

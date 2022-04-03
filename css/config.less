@@ -1,0 +1,54 @@
+// -- Colors
+@blanc:#ffffff;
+@backgroundColor: #32394b;
+
+@off:#8f97ab;
+
+@gris0:#fafafa;
+@gris1:#f5f5f5;
+@gris2:#e4e4e5;
+@gris3:#e8e8e8;
+@gris4:#f6f7f2;
+
+@texte:#505969;
+@border_input:#c8cacc;
+@ico_off:#999ca1;
+
+@home:@gris1;
+@fichiers:@gris1;
+@gestion:@gris1;
+@alertes:#d73e4d;
+@personnes:#14b7ca;
+@associations:#7dcd48;
+@partenaires:@gris1;
+@distinctions:#f6a812;
+@annonces:#8d44ad;
+@achats : #297fb8;
+@statistiques:@gris1;
+@amis:#65C6BB;
+
+@bronze:#d7710d;
+
+@vert:#32c15a;
+@orange:#ec7a00;
+
+@separateurNav:#4d535b;
+
+// -- URL
+@imagePath: ~"../images";
+
+// -- Fonts
+.fontDefault(){font-family: Helvetica, Arial, sans-serif;}
+.fontFallbackIe(){font-family: Georgia, serif;}
+
+.font-size(@pxValue){
+    @remValue: (@pxValue / 10);
+    font-size: ~"@{pxValue}px";
+    font-size: ~"@{remValue}rem";
+}
+
+.line-height(@pxValue){
+    @remValue: (@pxValue / 10);
+    line-height: ~"@{pxValue}px";
+    line-height: ~"@{remValue}rem";
+}

@@ -1,0 +1,32 @@
+@media print { 
+
+	nav, header {
+		display:none;
+	}
+	section #header h1 {
+		font-size:1.6em;
+	}
+	
+	section {
+		margin-left:none;
+	}
+	
+	section #conteneur.detail.distinctions .group1,
+	section #conteneur.detail.distinctions .group2,
+	section #conteneur.personnes.detail article#detail,
+	section #conteneur.personnes.detail article#contenu_distinctions, 
+	section #conteneur.personnes.detail article#contenu_bienfaiteur,
+	section #conteneur.personnes.detail article#contenu_amis,
+	section #conteneur.personnes.detail article#contenu_achats, 
+	section #conteneur.personnes.detail article#contenu_annonces,
+	section #conteneur.detail.distinctions .group1 article,
+	section #conteneur.detail.distinctions .group2 article
+	{
+		width:100%;
+		clear:both;
+		min-height: initial;
+		height:auto;
+		border-top:2px solid #000;
+	}
+
+}
