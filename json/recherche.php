@@ -977,16 +977,16 @@ if ($recherche == 'personnes') {
 		if (!empty($_GET['non_courriel'])) 
 			$sqlComplement[] = ' personnes.courriel = "" ';
 						
-		if (count($_GET['region'])>0) 
+		if (isset($_GET['region']) && count($_GET['region'])>0) 
 			$sqlComplement[] = ' regions.id IN ('.lister($_GET['region']).') ';
 		
-		if (count($_GET['departement'])>0) 
+		if (isset($_GET['departement']) && count($_GET['departement'])>0) 
 			$sqlComplement[] = ' departements.id IN ('.lister($_GET['departement']).') ';
 	
-		if (!empty($_GET['adresse'])) 
+		if (isset($_GET['adresse']) && !empty($_GET['adresse'])) 
 				$sqlComplement[] = ' lower( personnes.adresse) LIKE "%'.traiteTexte($_GET['adresse']).'%" ';
 				
-		if ( (!empty($_GET['pays'])) && ($_GET['pays'] != 0) )
+		if ( (isset($_GET['pays']) && !empty($_GET['pays'])) && ($_GET['pays'] != 0) )
 				$sqlComplement[] =  ' personnes.pays =  "'.$_GET['pays'].'" ';
 				
 		// Association		
@@ -1007,42 +1007,42 @@ if ($recherche == 'personnes') {
 		
 		// Particularités
 		
-		if ($_GET['membre_ca'] > 0) {
+		if (isset($_GET['membre_ca']) && $_GET['membre_ca'] > 0) {
 			$sqlComplement[] = ' personnes_associations.cons_admin =  "'.$_GET['membre_ca'].'" ';
 			$sqlFrom[] = ' INNER JOIN personnes_associations ON personnes.id = personnes_associations.personne ';
 		}
 		
-		if ($_GET['siege'] > 0) {
+		if (isset($_GET['siege']) && $_GET['siege'] > 0) {
 			$sqlComplement[] = ' personnes.siege =  "'.$_GET['siege'].'" ';
 		}
 		
-		if ($_GET['delegue_statut'] > 0) {
+		if (isset($_GET['delegue_statut']) && $_GET['delegue_statut'] > 0) {
 			$sqlComplement[] = ' personnes.delegue_statut =  "'.$_GET['delegue_statut'].'" ';
 		}		
 		
-		if ($_GET['delegue_type'] > 0) {
+		if (isset($_GET['delegue_type']) && $_GET['delegue_type'] > 0) {
 			$sqlComplement[] = ' personnes.delegue_type =  "'.$_GET['delegue_type'].'" ';
 		}	
 		
-		if ($_GET['bienfaiteur'] == 1) {
+		if (isset($_GET['bienfaiteur']) && $_GET['bienfaiteur'] == 1) {
 			$sqlFrom[] = ' INNER JOIN bienfaiteurs ON personnes.id = bienfaiteurs.bienfaiteur ';
 		}
 		
-		if ($_GET['presse'] == 1) {
+		if (isset($_GET['presse']) && $_GET['presse'] == 1) {
 			$sqlComplement[] = ' personnes.presse <>  "" ';
 		}
 		
-		if ($_GET['elu'] == 1) {
+		if (isset($_GET['elu']) && $_GET['elu'] == 1) {
 			$sqlComplement[] = ' personnes.elu > "0" ';
 		}
 		
-		if ($_GET['prospect'] == 1) {
+		if (isset($_GET['prospect']) && $_GET['prospect'] == 1) {
 			$sqlComplement[] = ' personnes.prospect =  "1" ';
 		}
 		
 		// Assurance gratuite
 		
-		if ($_GET['assure'] == 1) {
+		if (isset($_GET['assure']) && $_GET['assure'] == 1) {
 			$sqlFrom[] = ' INNER JOIN personnes_associations AS asso ON personnes.id = asso.personne ';
 		
 			if (!empty($_GET['actif'])) 
@@ -1058,7 +1058,7 @@ if ($recherche == 'personnes') {
 		
 		// Amis
 		
-		if ($_GET['amis'] == 1) {
+		if (isset($_GET['amis']) && $_GET['amis'] == 1) {
 			$sqlFrom[] = ' INNER JOIN laf_adhesions_personnes AS laf ON personnes.id = laf.personne ';
 			
 			
@@ -1148,9 +1148,11 @@ if ($recherche == 'personnes') {
 		}
 		
 	// Dé-doublonne les requetes	
-	if (is_array($sqlFrom)) $sqlFrom = array_unique($sqlFrom);
+	if (isset($sqlFrom) && is_array($sqlFrom)) $sqlFrom = array_unique($sqlFrom);
 	if (is_array($sqlComplement)) $sqlComplement = array_unique($sqlComplement);
-	 
+	
+	// 
+
 	 $sql ='SELECT DISTINCT 
 	personnes.id, 
 	personnes.nom, 
@@ -1179,7 +1181,7 @@ if ($recherche == 'personnes') {
 	personnes.prenom_soundex, 
 	personnes.nom_soundex,
 	personnes.civilite, 
-	personnes.numero_adherent, '.lister($sqlChamps, ' ').'	
+	personnes.numero_adherent, '.(isset($sqlChamps)?lister($sqlChamps, ' '):'').'	
 	villes.code_postal, 
 	villes.nom AS ville_label, 
 	regions.nom AS region, 
@@ -1190,9 +1192,10 @@ if ($recherche == 'personnes') {
 	 LEFT OUTER  JOIN departements ON villes.departement = departements.id 
 	 LEFT OUTER JOIN regions ON villes.region = regions.id 
 	  
-	 '.lister($sqlFrom, '  ');
-	
- if (strlen($sqlComplement)>0) $sql.= ' WHERE '. lister($sqlComplement, ' AND ');
+	 '.(isset($sqlFrom)?lister($sqlFrom, '  '):'');
+
+	 if (!is_array($sqlComplement) && strlen($sqlComplement)>0) $sql.= ' WHERE '. lister($sqlComplement, ' AND ');
+
  else if (is_array($sqlComplement)) $sql.= ' WHERE '. lister($sqlComplement, ' AND ');		
 		// SORTIE DE LA REQUETTE
 		//echo $sql;

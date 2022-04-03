@@ -111,8 +111,11 @@ if ($mode == 'site_ajouter') {
 	$Pays = getPays();
 }
 
+// Morceau de code ajouté afin d'éviter les messages d'avertissement sur /personnes/ajouter
+if(!isset($perso))
+    $perso = new personne();
 
-	
+
 $selectProspect = isSelected($perso->prospect,'checkbox');
 
 // Menu civilité

@@ -1,3 +1,5 @@
+console.log("gestion");
+
 jQuery(function($) {
 
 	$.fn.enregistre = function (type) {
@@ -22,8 +24,8 @@ jQuery(function($) {
 	//
 	//////////////////////
 
-
 	$("#action_recherche").bind("click", function() {
+		console.log("recherche");
     	 var form = $(this).closest("form").attr('id');
     	 var auto = $( "#auto").val();
 
@@ -36,12 +38,14 @@ jQuery(function($) {
     	 history.pushState({}, '', 'http://'+window.location.hostname + window.location.pathname);
 
     	// Calcul du nombre de résultats
+		console.log($('#'+form).serialize());
     	 $.ajax({
        		url: 'json/recherche.php',
        		type: 'get',
         	dataType: 'json',
         	data: $('#'+form).serialize(),
         	success: function(data) {
+					console.log(this.url+this.data);
         			if (data.erreur) {
         				alert(data.erreur);
         				return false;
@@ -70,7 +74,6 @@ jQuery(function($) {
 									dataType: 'json',
 									data: $('#'+form).serialize(),
 									success: function(data){
-
 										$('#tab_resultats').dynatable({
 												dataset: {
 													records: data.records

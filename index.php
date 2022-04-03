@@ -59,3 +59,6 @@ else
 // Pied de page
 require ('inc/footer.php');
 ?>
+<script>
+	console.log("Bonjour");
+</script>
