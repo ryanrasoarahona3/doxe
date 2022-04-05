@@ -195,6 +195,8 @@ class Document
     
     public function creation_CNB()
     {
+		$beneficiaire="";
+		$laf;
     	
     	if ($this->type == 'A') {
         	$laf = new laf_association ($this->laf); 
@@ -228,6 +230,7 @@ class Document
 		$commande = new commande($laf->id_commande);
 		
 		// Recherche du produits
+		if(isset($commande->produits) && (is_array($commande->produits) || is_object($commande->produits)))
 		foreach ($commande->produits as $cle=>$prod) {
 			if (($this->type == 'A') && ($prod->id_source == ID_ADHESION_ASSOCIATION)) {
 				$adhesion = $prod;
@@ -244,7 +247,7 @@ class Document
 		if (!empty($client->courriel))  $num_adherent .= '<br><em>Courriel : '. $client->courriel.'</em>';
 		
 		
-		$this->contenus = str_replace('{montant}', $adhesion->prix , $this->contenus);
+		$this->contenus = str_replace('{montant}', (isset($adhesion->prix) ? $adhesion->prix : '') , $this->contenus);
         $this->contenus = str_replace('{annee}', $laf->annee, $this->contenus);
         $this->contenus = str_replace('{reglement}', $commande->payement_libelle, $this->contenus);
         
@@ -255,8 +258,8 @@ class Document
 		$this->gabarit = str_replace('{numero_adherent}', $num_adherent, $this->gabarit);
 		
 		$this->footer = str_replace('{pied-de-page}', '<br>', $this->footer);
-		$this->gabarit = str_replace('{numero-facture}', $order->order_number, $this->gabarit);
-		$this->gabarit = str_replace('{total}', formateMontant($laf->montant,false), $this->gabarit);
+		// $this->gabarit = str_replace('{numero-facture}', $order->order_number, $this->gabarit);
+		// $this->gabarit = str_replace('{total}', formateMontant($laf->montant,false), $this->gabarit);
 		$this->gabarit = str_replace('{contenu}', $this->contenus, $this->gabarit);
         $this->gabarit = str_replace('{pied-de-page}', $this->footer , $this->gabarit); 
 
