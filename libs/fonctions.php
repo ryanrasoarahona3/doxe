@@ -53,6 +53,7 @@ function ouinon($retour) {
 function getActivites ($selection=array(0)) {
 	
 	$connect = connect();
+	$retour = "";
 	
 	$req = "SELECT * FROM activites_categories ORDER BY nom ASC;";
 	

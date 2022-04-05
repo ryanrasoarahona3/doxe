@@ -6,14 +6,15 @@ $form = new stdClass;
 
 $form->section = 'associations_ca';
 $form->destination_validation = "json/sauve.php";
+$form->label_validation = "Valider";
 $form->annulation = true;
 $form->id_association = $_GET['id'];
-if($_GET['id_lien']) $form->annee =  $_GET['id_lien'];
+if(isset($_GET['id_lien']) && $_GET['id_lien']) $form->annee =  $_GET['id_lien'];
 $form->action = 'conseil_administration'; 
 
 
 
-if ($form->annee) {
+if (isset($form->annee)) {
 	$titre = 'Conseil d\'administration '.$form->annee;
 	$ajouteCA = false;
 	

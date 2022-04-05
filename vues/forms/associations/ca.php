@@ -80,7 +80,7 @@
 				</fieldset>
 				
 				<fieldset>
-				<label for="benevole">Également bénévole <input type="checkbox" name="benevole" value="1" id="benevole" <?php echo $benevole ?>/></label>
+				<label for="benevole">Également bénévole <input type="checkbox" name="benevole" value="1" id="benevole" /></label>
 				</fieldset>
 				
 				
