@@ -19,12 +19,12 @@ if (isset($_GET['plus'])){
 
 		$asso->lesAmis();
 	
-		$total = count($asso->lesamis);
+		$total = (isset($asso) && isset($asso->lesamis) && is_countable($asso->lesamis)? count($asso->lesamis) : 0);
 		$i=0;
 		$amis = '';
 
 		// Traitement
-		if (count($asso->lesamis)>0) {
+		if (isset($asso) && isset($asso->lesamis) && is_countable($asso->lesamis) && count($asso->lesamis)>0) {
 			foreach ($asso->lesamis as $annee=>$laf) {	
 					
 				if ($laf->annee >= 2015) {

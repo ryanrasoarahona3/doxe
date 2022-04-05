@@ -18,13 +18,13 @@ if (isset($_GET['plus'])){
 }
 
 $perso->distinctions();
-$total = count($perso->distinctions);
+$total = ( is_countable($perso->distinctions) ? count($perso->distinctions) : 0);
 $i=0;
 $amis = '';
 $affDistinctions = '';
 //d($perso->distinctions);
 		// Traitement
-		if (count($perso->distinctions)>0) {
+		if (is_countable($perso->distinctions) && count($perso->distinctions)>0) {
 			foreach ($perso->distinctions as $id=>$distinction) {	
 				
 				if ($distinction->distinction_type_decision == 0) {

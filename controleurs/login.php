@@ -22,7 +22,8 @@ include_once(ROOT.'/vues/'.$controlleur.'.php');
         	dataType: 'json',
         	data: $('#login').serialize(),
         	success: function(data) {
-             
+				
+				console.log(data);
              	if (data.login==1) {
              		window.location.href='/personnes/';
              	} else {

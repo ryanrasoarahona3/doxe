@@ -17,6 +17,7 @@ if (isset($_GET['id'])) {
 
 $perso->commandes();
 
+if(isset($perso->commandes) && is_array($perso->commandes) )
 foreach ($perso->commandes as $commande) {
 	
 	$detail_commande = new commande($commande->id_commande);

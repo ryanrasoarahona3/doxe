@@ -1,5 +1,5 @@
 <div>
-			<?php if (strlen($asso->logo)>0) : ?>
+			<?php if (isset($asso) && isset($asso->logo) && is_string($asso->logo) && strlen($asso->logo)>0) : ?>
 			<aside class="image">
 				<img src="css/images/<?php echo $asso->logo ?>">
 			</aside>

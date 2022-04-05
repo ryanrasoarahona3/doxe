@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 header('Set-Cookie: fileDownload=true; path=/');
@@ -93,10 +94,13 @@ if ($_SESSION['last']['recherche']['recherche'] == 'personnes') {
             $perso = new personne($enregistrement->id);
             $perso->lesAmis();
 
-            krsort($perso->lesamis);
-            reset($perso->lesamis);
+            if(is_array($perso->lesamis)) {
+                krsort($perso->lesamis);
+                reset($perso->lesamis);
+                $enregistrement->derniere_adhesion = key($perso->lesamis);
+            }
 
-            $enregistrement->derniere_adhesion = key($perso->lesamis);
+            
 
             $noms = array();
             $properties = get_object_vars($enregistrement);
@@ -224,7 +228,7 @@ if ($_SESSION['last']['recherche']['recherche'] == 'distinctions') {
                     else $enregistrement->{$name} .= $d->code_pays . ' ' . $d->ville_pays . "\n" . $d->pays_label;
                 }
                 if ($name == 'distinction_type_decision_label_refuse') {
-                    $temp = str_replace('<span class="alerte">', '', $value);
+                    $temp = str_replace('<span class="alerte">', '', ($value != null ? $value : ''));
                     $temp = str_replace('</span>', '', $temp);
                     $enregistrement->{$name} = $temp;
                 }

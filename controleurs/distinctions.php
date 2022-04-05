@@ -27,7 +27,7 @@ jQuery(function($) {
 	$('#num_demande').autoCompleteSection('personne',3,false,'personne');
 	
 	
-	<?php if ($auto) : ?>
+	<?php if (isset($auto) && $auto) : ?>
 			$("#action_recherche").trigger("click");
 	<?php endif; ?>
 });

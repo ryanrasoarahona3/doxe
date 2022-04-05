@@ -774,7 +774,7 @@ class Distinction
         
         $aff = '<h1 class="' . $alerte . '">' . $distinctionLabel . ' ' . $this->annee . '</h1>';
         $aff .= '<h3>Numéro  ' .$this->num_demande.'</h3>';
-        $aff .= $demande;
+        $aff .= (isset($demande) ? $demande : '');
         
         return $aff;
     }

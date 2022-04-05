@@ -69,16 +69,16 @@
 			
 					<fieldset class="col05">
 					<label for="personne">Personne</label>
-					<input type="text" name="personne"  value="<?php echo $choixRecherche['personne'] ?>" id="personne"  />
+					<input type="text" name="personne"  value="<?php echo (isset($choixRecherche['personne']) ? $choixRecherche['personne'] : '') ?>" id="personne"  />
 					<ul id="personne_resultat">
 						
 					</ul>
-					<input hidden type="text" name="personne" id="personne" value="<?php echo $choixRecherche['personne'] ?>"   >
+					<input hidden type="text" name="personne" id="personne" value="<?php echo (isset($choixRecherche['personne']) ? $choixRecherche['personne'] : '') ?>"   >
 					</fieldset>
 					
 					<fieldset class="col05">
 					<label for="num_demande">Numéro de demande</label>
-					<input type="text" name="num_demande"  value="<?php echo $choixRecherche['num_demande'] ?>" id="num_demande"  />
+					<input type="text" name="num_demande"  value="<?php echo (isset($choixRecherche['num_demande']) ? $choixRecherche['num_demande'] : '') ?>" id="num_demande"  />
 					</fieldset>
 					
 					<fieldset class="col05">
@@ -105,10 +105,10 @@
 		
 		
 		<div id="zone_validation">
-			<?php if ($retour) : ?>
+			<?php if (isset($retour) && $retour) : ?>
 				<input type="hidden" name="retour" id="retour" value="1">
 			<?php endif; ?>
-			<?php if ($auto) : ?>
+			<?php if (isset($auto) && $auto) : ?>
 				<input type="hidden" name="auto" id="auto" value="1">
 			<?php endif; ?>
 			<input type="hidden" name="recherche" id="recherche" value="distinctions">

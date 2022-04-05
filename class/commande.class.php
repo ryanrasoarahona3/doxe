@@ -344,14 +344,15 @@ class Commande {
 	
 	public function total () {
 		
+		if(is_array($this->produits))
 		foreach ($this->produits as $cle=>$produit) {	
     			$this->total += $produit->prix * $produit->quantite;
     			$this->tva = $this->tva + $produit->tva;
     		}
     		
     		//$this->total += calculeLivraison($this->livraison_pays,$this->produits); 
-    		$this->total = number_format($this->total,2);
-    		$this->tva = number_format($this->tva,2);
+    		$this->total = (isset($this->total)? number_format($this->total,2):0.0);
+    		$this->tva = (isset($this->tva)?number_format($this->tva,2):0.0);
 	}
 	
 	public function isAdhesion() {

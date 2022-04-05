@@ -1,5 +1,5 @@
 <div>
-<?php if (strlen($perso->portrait)>0) : ?>
+<?php if (isset($perso->portrait) && is_string($perso->portrait) && strlen($perso->portrait)>0) : ?>
 			<aside class="image">
 				<img src="/upload/portraits/<?php echo trim($perso->portrait) ?>">
 			</aside>
@@ -40,9 +40,9 @@
 <?php echo $siege?>
 <?php echo $delegueDetail ?>
 <br>
-<?php echo $prospect?>
-<?php echo $elu?>
-<?php echo $presse?>
+<?php echo ( isset($prospect) ? $prospect : '' )?>
+<?php echo ( isset($elu) ? $elu : '' ) ?>
+<?php echo ( isset($presse) ? $presse : '' ) ?>
 </aside>
 </div>
 			

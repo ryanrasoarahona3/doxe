@@ -2,7 +2,7 @@
 				<h2><span class="icon-amis"></span> Adhésion au Cercle National des Bénévoles</h2>
 				<button type="button" class="ajouter right" form-action="associations" form-type="amis" form-id="<?php echo $asso->id_association ?>" ></button>
 				
-				<?php echo $plus ?>
+				<?php echo (isset($plus)? $plus : '') ?>
 				<br class="clear">
 				
 				<?php if (!empty($amis)) : ?>

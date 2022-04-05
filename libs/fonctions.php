@@ -611,7 +611,7 @@ function vide($str) {
 
 function phone($phone)
 {
-    $phone = preg_replace("/[^0-9]/", "", $phone);
+    $phone = ($phone!=null?preg_replace("/[^0-9]/", "", $phone):"");
 	if(strlen($phone) == 10)
         return preg_replace("/([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/", "$1 $2 $3 $4 $5", $phone);
     else 

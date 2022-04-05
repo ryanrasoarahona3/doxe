@@ -4,7 +4,7 @@
 				
 				<?php if (!empty($ca)) : ?>
 				
-				<?php echo $plus ?>
+				<?php echo (isset($plus)?$plus:'') ?>
 				<br class="clear">
 				<table>
 				  <thead>
@@ -19,7 +19,7 @@
 				  	<?php echo $ca ?>
 				  </tbody>
 				</table>
-					<?php echo $fermer ?>
+					<?php echo (isset($fermer)?$fermer:''); ?>
 				<?php else : ?>
 					<em></em>
 				<?php endif; ?>

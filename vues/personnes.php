@@ -121,9 +121,9 @@
 				
 				<fieldset class="col2" id="zone_ville_pays">
 				<label for="code_pays">Code postal</label>
-				<input type="text" name="code_pays"  value="<?php echo $perso->code_pays ?>" id="code_pays" />
+				<input type="text" name="code_pays"  value="<?php echo (isset($perso)?$perso->code_pays:'') ?>" id="code_pays" />
 				<label for="ville_pays">Ville</label>
-				<input type="text" name="ville_pays"  value="<?php echo $perso->ville_pays ?>" id="ville_pays" />
+				<input type="text" name="ville_pays"  value="<?php echo (isset($perso)?$perso->ville_pays:'') ?>" id="ville_pays" />
 				</fieldset>
 				<!---->
 		
@@ -418,5 +418,5 @@
 </div>
 
 <div id="dialog-modal" title="<?php echo $modalTitre ?>" class="<?php echo $modalClasse ?>">
-	<p><?php echo $modalTexte ?></p>
+	<p><?php echo (isset($modalTexte) ? $modalTexte : '') ?></p>
 </div>

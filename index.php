@@ -3,6 +3,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 ini_set('display_errors', 'On');
 #See CERCLE_CONFIGURATION
 
+if(!isset($controlleur))
+	$controlleur="";
+
 // Ouverture de session
 session_start();
 

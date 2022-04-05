@@ -174,8 +174,8 @@ WHERE personnes.etat = 1  AND ';
 			$retour['records'][$i]['documents'] = $enregistrement->documents;
 			$retour['records'][$i]['region'] = $enregistrement->region;
 			$retour['records'][$i]['departement'] = $enregistrement->departement;
-			$retour['records'][$i]['validation'] = $enregistrement->validation;
-			$retour['records'][$i]['actions'] .= '<button form-action="envoyer" form-element="'.$enregistrement->courriel.'" class="right envoyer action"></button>';
+			$retour['records'][$i]['validation'] = (isset($enregistrement->validation) ? $enregistrement->validation : '');
+			$retour['records'][$i]['actions'] = (isset($retour['records'][$i]['actions']) ? $retour['records'][$i]['actions'] : '') . '<button form-action="envoyer" form-element="'.$enregistrement->courriel.'" class="right envoyer action"></button>';
 			$retour['records'][$i]['actions'] .= '<button form-action="lien" form-element="/personnes/detail/'.$enregistrement->id_personne.'" class="right personnes action"></button>';
 			$retour['records'][$i]['actions'] .= '<button form-action="lien" form-element="/distinctions/detail/'.$enregistrement->id.'" class="right details action"></button>';
 			$i++;
@@ -608,7 +608,7 @@ if ($recherche == 'associations') {
 		if (!empty($_GET['courriel'])) 
 			$sqlComplement[] = ' LOWER(associations.courriel) LIKE "%'.strtolower($_GET['courriel']).'%" ';
 			
-		if ($_GET['prospect'] == 1) 
+		if (isset($_GET['prospect']) && $_GET['prospect'] == 1) 
 			$sqlComplement[] = ' associations.prospect =  "1" ';
 			
 		if ($_GET['association_type']>0) 
@@ -730,7 +730,7 @@ if ($recherche == 'associations') {
 		*/
 		
 	
-		if ($_GET['ville_president'] > 0)  {
+		if (isset($_GET['ville_president']) && $_GET['ville_president'] > 0)  {
 			$sqlFrom[] = ' INNER JOIN personnes_associations ON associations.id = personnes_associations.association ';
 			$sqlFrom[] = ' INNER JOIN personnes ON personnes_associations.personne = personnes.id ';
 			$sqlComplement[] = ' personnes_associations.annee = "'.ANNEE_COURANTE.'" ';
@@ -739,7 +739,7 @@ if ($recherche == 'associations') {
 			$sqlComplement[] = ' personnes.ville = "'.$_GET['ville_president'].'" ';
 		}
 		
-		if ($_GET['departement_president'] > 0)  {
+		if (isset($_GET['departement_president']) && $_GET['departement_president'] > 0)  {
 			$sqlFrom[] = ' INNER JOIN personnes_associations ON associations.id = personnes_associations.association ';
 			$sqlFrom[] = ' INNER JOIN personnes ON personnes_associations.personne = personnes.id ';
 			$sqlFrom[] = ' INNER JOIN villes AS villes_p ON personnes.ville = villes_p.id ';
@@ -749,7 +749,7 @@ if ($recherche == 'associations') {
 			$sqlComplement[] = ' villes_p.departement = "'.$_GET['departement_president'].'" ';
 		}
 		
-		if ($_GET['region_president'] > 0)  {
+		if (isset($_GET['region_president']) && $_GET['region_president'] > 0)  {
 			$sqlFrom[] = ' INNER JOIN personnes_associations ON associations.id = personnes_associations.association ';
 			$sqlFrom[] = ' INNER JOIN personnes ON personnes_associations.personne = personnes.id ';
 			$sqlFrom[] = ' INNER JOIN villes AS villes_p ON personnes.ville = villes_p.id ';
@@ -818,7 +818,7 @@ if ($recherche == 'associations') {
 		} 
 					
 		
-		if ($_GET['adherent_annees'] > 0)  {
+		if (isset($_GET['adherent_annees']) && $_GET['adherent_annees'] > 0)  {
 			$sqlComplement[] = ' laf_adhesions_associations.annee IN ( '.lister($_GET['adherent_annees']).') ';
 			$sqlFrom[] = ' INNER JOIN laf_adhesions_associations AS laf ON associations.id = laf.association ';
 		}
@@ -842,7 +842,7 @@ if ($recherche == 'associations') {
 	} else {
 	
 		// Dédoublonne les requetes	
-		if (is_array($sqlFrom)) $sqlFrom = array_unique($sqlFrom);
+		if (isset($sqlFrom) && is_array($sqlFrom)) $sqlFrom = array_unique($sqlFrom);
 		if (is_array($sqlComplement)) $sqlComplement = array_unique($sqlComplement);
 	
 		// Compte les résultats	
@@ -861,7 +861,7 @@ if ($recherche == 'associations') {
 			 LEFT JOIN villes ON associations.ville = villes.id
 			 LEFT JOIN departements ON villes.departement = departements.id
 			 LEFT JOIN regions ON villes.region = regions.id 
-			  '.lister($sqlFrom, '  ').'
+			  '.(isset($sqlFrom) && is_array($sqlFrom) ? lister($sqlFrom, '  '):'').'
 			WHERE  associations.etat = 1  AND ';
 			$sql .= lister($sqlComplement, ' AND ');
 	

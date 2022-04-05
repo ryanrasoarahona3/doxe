@@ -103,7 +103,7 @@ class Personne {
     	  //
 
 		  $this->connection = $GLOBALS['connection'];
-    	  $this->modificateur = $_SESSION['utilisateur']['id'];
+    	  @$this->modificateur = $_SESSION['utilisateur']['id'];
     	  
     	  $this->prospect = 0; 
 		
@@ -526,7 +526,7 @@ ORDER BY distinctions.annee DESC
 						echo "Erreur d'enregistrement : ", $e->getMessage();
 					}
 					// Chargement des départements des régions sélectionnées
-					if (count($this->delegue_regions)>0) $this->delegue_tous_departements = getDepartements($this->delegue_regions);
+					if (is_countable($this->delegue_regions) && count($this->delegue_regions)>0) $this->delegue_tous_departements = getDepartements($this->delegue_regions);
 					
 					// Départements
 					try {

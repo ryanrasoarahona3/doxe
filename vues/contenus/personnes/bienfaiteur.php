@@ -1,8 +1,8 @@
 <div class="contenu personnes">
-	<h2>Bienfaiteur <?php echo $totalDons ?></h2>
+	<h2>Bienfaiteur <?php echo (isset($totalDons) ? $totalDons : 0.0) ?></h2>
 	<button type="button" class="ajouter right" form-action="commun" form-type="bienfaiteur" form-id="<?php echo $perso->id_personne ?>" form-type-utilisateur="P" ></button>
 	
-	<?php echo $plus ?>
+	<?php echo (isset($plus) ? $plus : '') ?>
 	<br class="clear">
 	
 	<?php if (!empty($bienfaiteur)) : ?>
