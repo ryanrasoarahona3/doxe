@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
 	require_once($_SESSION['ROOT'].'libs/requires.php');
 	$perso = new personne($_GET['id']);
 
-} 
+}
 // Chargé par ajax
 if (isset($_GET['plus'])){
 	$limite = false;
