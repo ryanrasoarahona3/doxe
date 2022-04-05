@@ -52,6 +52,8 @@ function ouinon($retour) {
 
 function getActivites ($selection=array(0)) {
 	
+	$retour="";
+
 	$connect = connect();
 	
 	$req = "SELECT * FROM activites_categories ORDER BY nom ASC;";
@@ -619,7 +621,7 @@ function phone($phone)
 }
 
 function cleanCp($cp) {
-	$temp = explode('/',$cp);
+	$temp = explode('/', ($cp != null ? $cp : ""));
 	return $temp[0];
 }
 

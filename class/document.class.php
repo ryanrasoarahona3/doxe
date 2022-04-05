@@ -125,6 +125,9 @@ class Document
             return false;
         }
         
+		if($this->nom == null) {
+			$this->nom = '';
+		}
         switch ($this->code) {
         
             case 'BDC': 

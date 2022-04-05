@@ -79,7 +79,7 @@
 				<fieldset class="col2">
 				<label for="pays">Pays</label>
 				<?php echo $commentaires['pays'] ?>
-				<select type="text" name="pays"  value="" id="pays"  <?php echo $requis['pays'] ?>>
+				<select type="text" name="pays"  value="" id="pays"  <?php echo (isset($requis['pays']) ? $requis['pays'] : "") ?>>
 					<?php echo $Pays ?>
 				</select>
 				</fieldset>

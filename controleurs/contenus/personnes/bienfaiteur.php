@@ -23,11 +23,12 @@ foreach ($perso->commandes as $commande) {
 	$detail_commande = new commande($commande->id_commande);
 	// Cherche si l'achat contien un DON
 	$don = 0;
-	foreach ($detail_commande->produits as $id_produit=>$produit) {
-  			
-  			if ($produit->id_source == ID_DON) $don = $don + $produit->prix;
-  			//print_r($detail_commande);
-	}	
+	if($detail_commande != null && is_array($detail_commande))
+		foreach ($detail_commande->produits as $id_produit=>$produit) {
+				
+				if ($produit->id_source == ID_DON) $don = $don + $produit->prix;
+				//print_r($detail_commande);
+		}	
 	
 	
 	if ($don!=0) {

@@ -4,7 +4,7 @@ require_once($_SESSION['ROOT'].'libs/requires.php');
 
 $form = new stdClass;
 $form->destination_validation = "json/sauve.php";
-
+$scripts = "";
 //
 // Modes
 //
