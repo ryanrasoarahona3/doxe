@@ -51,6 +51,7 @@ if (isset($_GET['plus'])){
 					$payd=true;
 					$commande = new commande();
 					$commande->etat_libelle='Encaissé';
+                    $commande->date_creation="";
 				}
 				
 				$amis .= '<div >';
