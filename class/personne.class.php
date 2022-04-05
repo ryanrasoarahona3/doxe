@@ -246,7 +246,7 @@ class Personne {
 		  $this->reqAjout = $this->connection->prepare("INSERT INTO  `personnes` 
 		  (`id`, `numero_adherent`, `civilite`, `prenom`, `nom`, `nom_soundex`, `prenom_soundex`, `nom_jeune_fille`, `date_naissance`, `ddn`, `courriel`, `mdp`, `adresse`, `ville`,`pays`, `telephone_fixe`, `telephone_mobile`, `profession`, `prospect`, `elu`, `presse`, `portrait`,`date_creation`,`date_modification`, `modificateur`, `newsletter`) 
 		  VALUES 
-		  ('', :numero_adherent, :civilite, :prenom , :nom , :nom_soundex , :prenom_soundex , :nom_jeune_fille , :date_naissance , :ddn , :courriel , :mdp , :adresse , :ville ,:pays , :telephone_fixe , :telephone_mobile , :profession , :prospect , :elu , :presse , :portrait ,   NOW(),NOW(), :modificateur, :newsletter);");
+		  (null, :numero_adherent, :civilite, :prenom , :nom , :nom_soundex , :prenom_soundex , :nom_jeune_fille , :date_naissance , :ddn , :courriel , :mdp , :adresse , :ville ,:pays , :telephone_fixe , :telephone_mobile , :profession , :prospect , :elu , :presse , :portrait ,   NOW(),NOW(), :modificateur, :newsletter);");
 	
 		 $this->reqAjout->bindParam(':numero_adherent', $this->numero_adherent, PDO::PARAM_STR, 255);
 		 $this->reqAjout->bindParam(':civilite', $this->civilite, PDO::PARAM_STR, 255);
@@ -607,7 +607,9 @@ ORDER BY distinctions.annee DESC
     					
     					// Enregistrement des liens delegues speciaux
     					if ($_SESSION['utilisateur']['siege'] == 1)  {
-    						if (count($this->association_special)>0) $retour = $this->sauveDelegueSpecial();
+							// Ce bout de code doit être revu
+							if ($this->association_special != "")
+    							if (count($this->association_special)>0) $retour = $this->sauveDelegueSpecial();
     					}
     					// Enregistrement accès extranet
     					if ($_SESSION['utilisateur']['siege'] == 1) $retour = $this->sauveAccesExtranet();
