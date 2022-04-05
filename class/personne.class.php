@@ -257,7 +257,7 @@ class Personne {
 		 $this->reqAjout->bindParam(':nom_jeune_fille', $this->nom_jeune_fille, PDO::PARAM_STR, 100);
 		 $this->reqAjout->bindParam(':date_naissance', $this->date_naissance_mysql, PDO::PARAM_STR, 100);
 		 $this->reqAjout->bindParam(':ddn', $this->ddn, PDO::PARAM_STR, 100);
-		 $this->reqAjout->bindParam(':courriel', $this->courriel, PDO::PARAM_INT, 11);
+		 $this->reqAjout->bindParam(':courriel', $this->courriel, PDO::PARAM_STR, 11);
 		 $this->reqAjout->bindParam(':mdp', $this->mdp, PDO::PARAM_STR, 100);
 		 $this->reqAjout->bindParam(':adresse', $this->adresse, PDO::PARAM_STR, 255);
 		 $this->reqAjout->bindParam(':ville', $this->ville,  PDO::PARAM_INT, 11);
