@@ -730,6 +730,10 @@ WHERE id = :ville
 		
 		return $resultat;
 	}
+
+	public function copieCA($annee, $identiqueAnnee) {
+		
+	}
 	
 	public function checkPersonneAnnee($id_personne,$annee) {
 		try {

@@ -1,4 +1,5 @@
 <?php
+$btAjout='';
 switch (substr($controlleur,0,5)) {
 	case ('annon') :
 		$btAjout =  '<a href="/annonces/ajouter" class="annonces"><button type="button" class="bouton-ajouter"><span class="icon-plus"></span></button></a>';
@@ -18,6 +19,7 @@ switch (substr($controlleur,0,5)) {
 
 }
 
+$titre='';
 switch ($controlleur) {
 	case ('annonces') :
 		$titre =  'Rechercher une annonce';

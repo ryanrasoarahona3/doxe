@@ -8,12 +8,12 @@ $form->section = 'associations_ca';
 $form->destination_validation = "json/sauve.php";
 $form->annulation = true;
 $form->id_association = $_GET['id'];
-if($_GET['id_lien']) $form->annee =  $_GET['id_lien'];
+if(isset($_GET['id_lien'])) $form->annee =  $_GET['id_lien'];
 $form->action = 'conseil_administration'; 
 
 
 
-if ($form->annee) {
+if (isset($form->annee)) {
 	$titre = 'Conseil d\'administration '.$form->annee;
 	$ajouteCA = false;
 	
@@ -22,8 +22,9 @@ if ($form->annee) {
 	$asso->conseilAdministration();
 	
 	$detailCA = '';
-	if (count($asso->conseil_administration)>0) {
+	if (isset($asso->conseil_administration) && is_countable($asso->conseil_administration) && count($asso->conseil_administration)>0) {
 		
+		if(isset($asso->conseil_administration[$form->annee]) && (is_array($asso->conseil_administration[$form->annee]) || is_object($asso->conseil_administration[$form->annee])))
 		foreach ($asso->conseil_administration[$form->annee] as $val) {
 			$detailCA.='<tr>';
 			$detailCA.='<td>'.$val['fonction_label'].'</td>';
@@ -53,6 +54,7 @@ else {
 	  $requete = $connect->query($req);
 	  $exclusion = array();
 	  // Traitement
+	  $menuCopieAnnee = (!isset($menuCopieAnnee) ? '' : $menuCopieAnnee);
 	  while( $element = $requete->fetch(PDO::FETCH_OBJ)){
 	
 		$exclusion[] = $element->annee;

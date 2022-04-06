@@ -74,7 +74,7 @@
 				<fieldset class="col2 zone_association">
 				<label for="date_declaration_jo" zone_association><?php echo $legendes['date_declaration_jo'] ?></label>
 				<?php echo $commentaires['date_declaration_jo'] ?>
-				<input type="text" name="date_declaration_jo"  value="<?php echo convertDate($assoc->date_declaration_jo,'php') ?>" id="date_declaration_jo" class="date"  data-parsley-trigger="change bind"  <?php echo $requis['date_declaration_jo'] ?>/>
+				<input type="text" name="date_declaration_jo"  value="<?php echo convertDate($assoc->date_declaration_jo,'php') ?>" id="date_declaration_jo" class="date"  data-parsley-trigger="change bind" />
 				</fieldset>
 				
 			</div>

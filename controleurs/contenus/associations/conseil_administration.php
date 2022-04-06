@@ -31,7 +31,7 @@ $asso->conseilAdministration();
 			
 			// Parcours les années depuis la première pour voir s'il y a des présidents
 			for ($i=date('Y'); $i>=$annee0; $i--) {
-				$president = $asso->presidents[$i];
+				$president = (isset($asso->presidents[$i]) ? $asso->presidents[$i] : null);
 				
 				$ca .= '<tr>';
 					  

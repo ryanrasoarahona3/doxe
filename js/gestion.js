@@ -1,4 +1,3 @@
-console.log("gestion");
 
 jQuery(function($) {
 
@@ -25,7 +24,6 @@ jQuery(function($) {
     //////////////////////
 
     $("#action_recherche").bind("click", function() {
-        console.log("recherche");
         var form = $(this).closest("form").attr('id');
         var auto = $("#auto").val();
 
@@ -38,15 +36,12 @@ jQuery(function($) {
         history.pushState({}, '', 'http://' + window.location.hostname + window.location.pathname);
 
         // Calcul du nombre de résultats
-        console.log($('#' + form).serialize());
         $.ajax({
             url: 'json/recherche.php',
             type: 'get',
             dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
-                // console.log(this.url + this.data);
-                // console.log(data);
                 if (data.erreur) {
                     alert(data.erreur);
                     return false;
@@ -75,7 +70,6 @@ jQuery(function($) {
                             dataType: 'json',
                             data: $('#' + form).serialize(),
                             success: function(data) {
-                                // console.log(data);
                                 $('#tab_resultats').dynatable({
                                     dataset: {
                                         records: data.records
@@ -796,7 +790,6 @@ jQuery(function($) {
 
         // Formulaire multi étapes
         if ($("article.etape").length > 1) {
-
             if (false === $('#' + form).parsley({ excluded: "input[type=button], input[type=submit], input[type=reset],  [disabled]" }).validate('block' + window.etapeInscription))
                 return;
             else validation = true;
@@ -809,7 +802,8 @@ jQuery(function($) {
         }
         // Formulaire une seule étape
         else {
-            if (false === $('#' + form).parsley({ excluded: "input[type=button], input[type=submit], input[type=reset],  [disabled]" }).validate())
+            if ($('#' + form).attr('skip') == 'no') validation = true;
+            else if (false === $('#' + form).parsley({ excluded: "input[type=button], input[type=submit], input[type=reset],  [disabled]" }).validate())
                 return;
             else validation = true;
         }
@@ -822,10 +816,11 @@ jQuery(function($) {
         // Sauvegarde des données
         for (instance in CKEDITOR.instances) CKEDITOR.instances[instance].updateElement();
 
+        
         $.ajax({
             url: gestion + $('#destination_validation').val(),
             type: 'post',
-            //dataType: 'json',
+            dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
                 console.log(data);

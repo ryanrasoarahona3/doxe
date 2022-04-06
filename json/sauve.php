@@ -2,6 +2,7 @@
 session_start();
 require_once('../libs/requires.php');
 require_once('../libs/constantes.php');
+require_once('rajout_code.php');
 
 /*
 // prevent direct access
@@ -233,16 +234,17 @@ if (($section == 'personnes_associations') || ($section == 'associations_personn
  
 if ($section == 'associations_ca')  {
 	if (!isset($_POST['benevole'])) $_POST['benevole']=0;
+	if (!isset($_POST['identique_annee'])) $_POST['identique_annee']=0;
 	
 	$asso = new association($_POST['id_association']);
 	
-	if ($_POST['identique_annee'] == 0) {
+	if ( $_POST['identique_annee'] == 0) {
 	
 		$date = date('d/m/Y');
 		$retour['message'] =  $asso->ajoutePersonneCa($_POST['id_personne'],$_POST['annee'],$date,$_POST['cons_admin'],$_POST['benevole']);
 	
 	} else {
-		$retour['message'] =  $asso->copieCA($_POST['annee'],$_POST['identique_annee']);
+		$retour['message'] =  copieCA($asso->id_association ,$_POST['annee'],$_POST['identique_annee']);
 	}
 	
 	$retour['id'] = $_POST['id_association'];

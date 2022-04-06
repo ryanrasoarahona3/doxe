@@ -10,8 +10,8 @@ if(!$isAjax) {
   trigger_error($user_error, E_USER_ERROR);
 }
 
-$action = $_POST['action'];
-$section = $_POST['section'];
+$action = (isset($_POST['action']) ? $_POST['action'] : '');
+$section = (isset($_POST['section']) ? $_POST['section'] : '');
  
 $retour = array();
 $retour['message']= '';
@@ -51,10 +51,10 @@ if ($section == 'personnes') {
 
 if ($section == 'personnes_associations') {
 	
-	$asso = new association($_POST['id_association']);
-	$retour['message'] =  $asso->supprimePersonne($_POST['id_lien']);
-	$retour['id'] = $_POST['id_personne'];
-	$retour['select_annee'] = $_POST['annee'];
+	$asso = new association(@$_POST['id_association']);
+	$retour['message'] =  @$asso->supprimePersonne(@$_POST['id_lien']);
+	$retour['id'] = @$_POST['id_personne'];
+	$retour['select_annee'] = @$_POST['annee'];
 	
 }
 

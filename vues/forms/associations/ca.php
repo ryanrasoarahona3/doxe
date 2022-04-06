@@ -1,7 +1,7 @@
 <section>
 	<div id="conteneur" class="associations ajouter">
 
-	<form id="ajouter_associations">
+	<form id="ajouter_associations" skip="no" >
 		<article class="associations">
 		
 		<h2><span class="icon-personnes"></span> <?php echo $titre ?></h2>
@@ -80,7 +80,7 @@
 				</fieldset>
 				
 				<fieldset>
-				<label for="benevole">Également bénévole <input type="checkbox" name="benevole" value="1" id="benevole" <?php echo $benevole ?>/></label>
+				<label for="benevole">Également bénévole <input type="checkbox" name="benevole" value="1" id="benevole" <?php echo (isset($benevole) ? $benevole : '') ?>/></label>
 				</fieldset>
 				
 				
@@ -97,7 +97,7 @@
 		<div id="zone_validation">
 			
 				<?php if ($form->annulation) : ?><button type="button" id="action_annuler" class="annuler">X Annuler</button><?php endif; ?>
-				<button type="button" id="action_valider" ><span class="icon-associations"></span>  <?php echo $form->label_validation ?></button>
+				<button type="button" id="action_valider" ><span class="icon-associations"></span>  <?php echo (isset($form->label_validation) ? $form->label_validation : 'Valider') ?></button>
 
 		</div>
 		
