@@ -32,7 +32,7 @@
 				
 				<fieldset class="col1">
 				<label for="type">Référence du paiement</label>
-					<input type="text" id="reference" name="reference" value="<?php echo $commande->reference ?>">
+					<input type="text" id="reference" name="reference" value="<?php echo (isset($commande->reference) ? $commande->reference : '') ?>">
 				</fieldset>
 				
 				<div id="erreur">

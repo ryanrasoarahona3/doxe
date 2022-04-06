@@ -1,5 +1,6 @@
 <?php
 $limite = 6;
+$fermer='';
 
 if (isset($_GET['id'])) {
 	session_start();

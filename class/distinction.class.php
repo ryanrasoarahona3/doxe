@@ -346,7 +346,7 @@ class Distinction
             // Restauration domaines
             $this->domaines = unserialize($this->domaines);
             $avis = selectValeur('distinctions_avis','id',$this->avis);
-            $this->distinction_avis_label =  $avis->nom;
+            $this->distinction_avis_label =  (isset($avis->nom) ? $avis->nom : '');
             
             // Chargement des activites
             try {

@@ -538,12 +538,13 @@ WHERE id = :ville
 		*/
 		
 		if ($this->pays != ID_FRANCE) {
-    			$temp = array();
-    			$temp['adresse'] = $this->adresse;
-    			$temp['ville'] = $this->ville_pays;
-    			$temp['code'] = $this->code_pays;
-    			$this->adresse = serialize($temp);
-    			$this->ville = 0;
+    			// $temp = array();
+    			// $temp['adresse'] = $this->adresse;
+    			// $temp['ville'] = $this->ville_pays;
+    			// $temp['code'] = $this->code_pays;
+    			// $this->adresse = serialize($temp);
+    			// $this->ville = 0;
+				$this->pays = ID_FRANCE;
     	}
     	
 		// Code commune
@@ -553,7 +554,7 @@ WHERE id = :ville
 		
 		// Ajout
 		if (!isset($this->id_association)) 
-		{
+		{   $retour = (isset($retour) && $retour != null ? $retour : null );
 				// Création du mdp si besoin 
 				if (empty( $this->mdp))  {
 					$this->mdp_clair = genererMdp(); // Envoyer le mot de passe
@@ -932,7 +933,8 @@ WHERE id = :ville
 	public function getInsee() {
 		$this->reqInsee->execute();
 		$enregistrement = $this->reqInsee->fetch(PDO::FETCH_OBJ);
-		$this->insee =  $enregistrement->insee;
+		if(isset($enregistrement->insee))
+			$this->insee =  ($enregistrement->insee);
 	}
 	
 	public function commandes() {

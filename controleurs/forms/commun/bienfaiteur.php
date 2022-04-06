@@ -12,10 +12,10 @@ $form->bienfaiteur = $_GET['id'];
 $form->type_utilisateur = $_GET['type_utilisateur'];
 
 
-if ($commande->payement != 1) $typePaiements = getSelect('commerce_payement' , array($commande->payement) );
+if (@$commande->payement != 1) $typePaiements = getSelect('commerce_payement' , array(@$commande->payement) );
 else $typePaiements = '<option value="1">Carte bleue</option>';
 
-$etatPaiements = getSelect('commerce_payement_etat' , array($commande->etat) );
+    $etatPaiements = getSelect('commerce_payement_etat' , array(@$commande->etat) );
 
 // Inclusion affichage
 include_once($_SESSION['ROOT'].'vues/forms/commun/bienfaiteur.php');

@@ -652,7 +652,7 @@ ORDER BY distinctions.annee DESC
     					
     					// Enregistrement des liens delegues speciaux
     					if ($_SESSION['utilisateur']['siege'] == 1)  {
-    						if (count($this->association_special)>0) $retour = $this->sauveDelegueSpecial();
+    						if (is_countable($this->association_special) && count($this->association_special)>0) $retour = $this->sauveDelegueSpecial();
     					}
     					// Enregistrement accès extranet
     					if ($_SESSION['utilisateur']['siege'] == 1) $retour = $this->sauveAccesExtranet();

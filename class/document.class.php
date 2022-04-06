@@ -176,10 +176,10 @@ class Document
         // Chargement du gabarit de contenu
         $this->reqContenu->execute();
         $enregistrement = $this->reqContenu->fetch(PDO::FETCH_OBJ);
-        $this->contenus = $enregistrement->contenu;
-        $this->nom      = $enregistrement->nom;
-        $this->balises  = $enregistrement->balises;
-        $this->contenus = html_entity_decode($this->contenus);
+        $this->contenus = @$enregistrement->contenu;
+        $this->nom      = @$enregistrement->nom;
+        $this->balises  = @$enregistrement->balises;
+        $this->contenus = ($this->contenus != null ? html_entity_decode($this->contenus) : null);
      
     }
     
@@ -318,6 +318,7 @@ class Document
 			<tbody>
 			';
 		
+		if(isset($commande->produits) && (is_array($commande->produits) || is_object($commande->produits)))
 		foreach ($commande->produits as $id=>$produit) {
 			$contenu .= '<tr>';
 			$contenu .= '<td style="width:55%;border-bottom:1px solid #aaa;font-size:12px;padding:10px;margin:0px;">'.$produit->nom;

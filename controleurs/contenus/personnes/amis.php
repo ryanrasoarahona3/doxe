@@ -19,12 +19,12 @@ if (isset($_GET['plus'])){
 
 		$perso->lesAmis();
 	
-		$total = count($perso->lesamis);
+		$total = (isset($perso->lesamis) && is_countable($perso->lesamis) ? count($perso->lesamis) : 0);
 		$i=0;
 		$amis = '';
 
 		// Traitement
-		if (count($perso->lesamis)>0) {
+		if ($total > 0) {
 			foreach ($perso->lesamis as $annee=>$laf) {	
 				
 				$carteOK = '';

@@ -297,7 +297,7 @@
 				<?php if ($form->annulation) : ?>
 					<button type="button" id="action_annuler" class="annuler">< Annuler</button>
 					<?php if (isSiege()) : ?>
-						<button  type="button" form-action="supprimer" form-element="section=personnes&id=<?php echo $perso->id_personne ?>" ><span class="icon-trash"></span> Supprimer</button>
+						<button type="button" form-action="supprimer" form-element="section=personnes&id=<?php echo $perso->id_personne ?>" ><span class="icon-trash"></span> Supprimer</button>
 					<?php endif; ?>
 				<?php endif; ?>
 				<button type="button" id="action_valider"><span class="icon-associations"></span> <?php echo $form->label_validation ?></button>
