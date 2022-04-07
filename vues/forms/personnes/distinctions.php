@@ -8,15 +8,15 @@
 		<br class="clear">	
 			<div>
 				
-				<?php if(isGestion() && $isChoixPersonne ) :  ?>
+				<?php if(isGestion() ) :  ?>
 				
 					<fieldset class="col1"  id="select_personne">
 					<label for="choix_personne">Personne</label>
-					<input type="text" name="choix_personne"  value="" id="choix_personne"  />
+					<input <?php echo (isset($distinction->personne) ? 'hidden' : '') ?> type="text" name="choix_personne"  value="" id="choix_personne"  />
 					<ul id="choix_personne_resultat">
-						<?php echo $selectPersonne ?>
+						<?php echo isset($selectPersonne) ? $selectPersonne : '' ?>
 					</ul>
-					<input hidden type="text" name="personne" id="personne" value=""   required>
+					<input hidden type="text" name="personne" id="personne" value="<?php echo (isset($distinction->personne) ? $distinction->personne : '') ?>"   required>
 					</fieldset>
 				
 				<?php endif; ?>
@@ -413,7 +413,7 @@
 		
 		<fieldset class="col3 ">
 		<label for="nom">Nom</label>
-		<input type="text" id="ajoutParrains_#index#_nom"  value="<?php echo $perso->nom ?>" name="parrains[#index#][nom]" />
+		<input type="text" id="ajoutParrains_#index#_nom"  value="<?php echo (isset($perso->nom) ? $perso->nom : '') ?>" name="parrains[#index#][nom]" />
 		</fieldset><br>
 		<ul id="ajoutParrains_#index#_nom_resultat">
 				
@@ -513,7 +513,7 @@ function maxlength(text,length) {if(text.innerText.length>length) text.innerText
 		<input type="hidden" id="action" name="action" value="<?php echo $form->action ?>">
 		<input type="hidden" id="section" name="section" value="<?php echo $form->section ?>">
 		<?php if(!$isChoixPersonne) : ?>
-			<input type="hidden" id="personne" name="personne" value="<?php echo $form->personne ?>">
+			<input type="hidden" id="personne" name="personne" value="<?php echo (isset($form->personne) && $form->personne!=null ? $form->personne : '') ?>">
 		<?php endif; ?>
 		<input type="hidden" id="id_lien" name="id_lien" value="<?php echo $form->id_lien ?>">
 		

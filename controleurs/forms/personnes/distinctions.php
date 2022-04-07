@@ -10,7 +10,11 @@ $form->section = 'distinctions';
 $form->destination_validation = "json/sauve.php";
 $form->annulation = true;
 $form->lien_annulation = 'action_annuler';
-$form->personne = $_GET['id'];
+$form->personne = isset($_GET['id']) ? $_GET['id'] : null;
+$dataParrains='';
+$timestamp = (new DateTime())->getTimestamp();
+
+$choixDomaines = '';
 
 // Édition depuis la page générale
 if (isset($distinction)) {
@@ -54,15 +58,14 @@ else   {
 	$form->action = 'ajouter';
 	
 	if (!isset($distinction)) {
-		$distinction = new distinction($_GET['id_lien']);
-		$form->id_lien = $_GET['id_lien'];
+		$distinction = new distinction((isset($_GET['id_lien']) ? $_GET['id_lien'] : ''));
+		$form->id_lien = (isset($_GET['id_lien']) ? $_GET['id_lien'] : '');
 	} else {
 		$form->id_lien = $distinction->id_annonce;
 	}
-
+	$selectPersonne = $distinction->personne;
 	$Activites = getSelect('activites' , array($distinction->activites));
-	$menuAvis = getSelect('distinctions_avis', array($distinction->avis));
-	
+	$menuAvis = getSelect('distinctions_avis', array($distinction->avis));	
 	$menuAnnee = getAnnees('distinctions',  'select', '', array($distinction->annee));
 	
 	$menuDistinctions = getSelect('distinctions_types',array($distinction->distinction_type));
@@ -89,7 +92,7 @@ else   {
 	
 	
 	// Parrains
-	if (count($distinction->parrains)>0) {	
+	if (isset($distinction->parrains) && is_countable($distinction->parrains) && count($distinction->parrains)>0) {	
 			$affDataParrains = "{   
 					'#form#_#index#_nom': ''
 				}";
@@ -105,7 +108,7 @@ else   {
 	}
 
 	// Documents
-	if (count($distinction->documents)>0) {	
+	if (isset($distinction->documents) && is_countable($distinction->documents) && count($distinction->documents)>0) {	
 			$affDataDocuments='';
 			foreach ($distinction->documents as $cle=>$val) {
 					$affDataDocuments.='
@@ -131,7 +134,7 @@ else   {
 	}
 	
 	// Activités en cours
-	if (count($distinction->activites)>0) {	
+	if (isset($distinction->activites) && is_countable($distinction->activites) && count($distinction->activites)>0) {	
 		$affDataActivites='';	
 			$data=array();
 			foreach ($distinction->activites as $val) {
@@ -148,7 +151,7 @@ else   {
 	
 	
 	// Activités passées
-	if (count($distinction->activites_passees)>0) {	
+	if (isset($distinction->activites_passees) && is_countable($distinction->activites_passees) && count($distinction->activites_passees)>0) {	
 		$data=array();
 		$affDataActivitesPassees='';	
 			foreach ($distinction->activites_passees as $val) {
@@ -166,7 +169,7 @@ else   {
 	if ( !empty($affDataActivites) ) $affDataActivitesPassees = $affDataActivites.','.$affDataActivitesPassees;
 	
 	// Distinctions
-	if (count($distinction->distinctions)>0) {	
+	if (isset($distinction->distinctions) && is_countable($distinction->distinctions) && count($distinction->distinctions)>0) {	
 		$data=array();
 		$affDataDistinctions='';	
 			foreach ($distinction->distinctions as $val) {
@@ -185,12 +188,13 @@ else   {
 		
 		if ($val != 'Autres' ) {
 			$select="";
-			foreach ( $distinction->domaines as $id2=>$val2) {
-				if ($val2 == $id) {
-					$select="checked";
-					break;
+			if(isset($distinction->domaines) && (is_array($distinction->domaines) || is_object($distinction->domaines)))
+				foreach ( $distinction->domaines as $id2=>$val2) {
+					if ($val2 == $id) {
+						$select="checked";
+						break;
+					}
 				}
-			}
 			$choixDomaines .= '<input type="checkbox" value="'.$id.'"  id="domaines" 	name="domaines[]" '.$select.'> '.$val.' | ';
 		}
 	}
@@ -201,7 +205,7 @@ else   {
 }
 
 // Si ajout global
-if ($isChoixType) {
+if (isset($isChoixType) && $isChoixType) {
 	$form->action = 'ajouter';
 }
 
@@ -213,7 +217,7 @@ include_once($_SESSION['ROOT'].'vues/forms/personnes/distinctions.php');
 
 $(document).ready(function() {
      
-   <?php if ($isChoixPersonne) : ?>
+   <?php if (isset($isChoixPersonne) && $isChoixPersonne) : ?>
   		$('#choix_personne').autoCompleteSection('personne',3,false,'personne');
    <?php endif;?>
   
@@ -254,7 +258,7 @@ $(document).ready(function() {
 			minFormsCount: 0,
 			iniFormsCount: 0,
 			data: [
-			 <?php echo $affDataActivitesPassees ?>
+			 <?php echo (isset($affDataActivitesPassees) ? $affDataActivitesPassees : '') ?>
 			],
 			afterAdd: function(source, newForm) {
             	//ajoutActivitesPassees_template0
@@ -277,7 +281,7 @@ $(document).ready(function() {
 			minFormsCount: 0,
 			iniFormsCount: 0,
 			data: [
-			 <?php echo $affData?>
+			 <?php echo (isset($affData) ? $affData : '')?>
 			],	
 	});
 	
@@ -292,7 +296,7 @@ $(document).ready(function() {
 			minFormsCount: 0,
 			iniFormsCount: 0,
 			data: [
-			 <?php echo $affDataDistinctions?>
+			 <?php echo (isset($affDataDistinctions) ? $affDataDistinctions : '') ?>
 			],	
 	});
 
@@ -308,7 +312,7 @@ $(document).ready(function() {
 			minFormsCount: 0,
 			iniFormsCount: 0,
 			data: [
-			 <?php echo $affDataParrains?>
+			 <?php echo (isset($affDataParrains) ? $affDataParrains : '') ?>
 			],	
 			afterAdd: function(source, newForm) {
 				//alert(newForm[0].id);

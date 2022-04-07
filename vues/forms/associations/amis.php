@@ -7,7 +7,7 @@
 		<h2><span class="icon-amis"></span> Cercle National des Bénévoles</h2>
 			
 			<div>
-				<?php echo $alerte_chargement  ?>
+				<?php echo (isset($alerte_chargement) ? $alerte_chargement : '')  ?>
 				
 				
 				<div class="zone_form_amis">
@@ -42,14 +42,14 @@
 					
 						<fieldset class="reference">
 							<label for="reference">Référence du paiement (n°chèque...)</label>
-							<input type="text" name="reference"  value="<?php echo $commande->reference ?>" id="reference"  />
+							<input type="text" name="reference"  value="" id="reference"  />
 						</fieldset>
 						
 						
 					
 						<fieldset class="ladate">
 							<label for="date_paiement">Date du paiement</label>
-							<input type="text" name="date_creation"  value="<?php if($commande->date_creation != '0000-00-00') echo $commande->date_creation ?>" id="date_paiement" class="date" required>
+							<input type="text" name="date_creation"  value="" id="date_paiement" class="date" required>
 						</fieldset>
 
 					<hr>
@@ -91,10 +91,10 @@
 		<div id="erreur">
 				</div>
 		<div id="zone_validation">
-			<?php if ($form->suppression) : ?>
+			<?php if (isset($form->suppression)) : ?>
 				<button type="button" id="action_supprimer" class="annuler">- Supprimer</button>
 			<?php else : ?>
-				<?php echo $alerte_supprime ?>
+				<?php echo @$alerte_supprime ?>
 			<?php endif; ?>
 			<?php if ($form->annulation) : ?><button type="button" id="action_annuler" class="annuler">X Annuler</button><?php endif; ?>
 			<button type="button" id="action_pre_valider"><span class="icon-associations"></span>  <?php echo $form->label_validation ?></button>

@@ -42,6 +42,8 @@ jQuery(function($) {
             dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
+                // console.log('requete : ' + this.url + $('#' + form).serialize());
+                // console.log('reponse : ' + data);
                 if (data.erreur) {
                     alert(data.erreur);
                     return false;
@@ -70,6 +72,8 @@ jQuery(function($) {
                             dataType: 'json',
                             data: $('#' + form).serialize(),
                             success: function(data) {
+                                // console.log('requete : ' + this.url + $('#' + form).serialize());
+                                // console.log('reponse : ' + data);
                                 $('#tab_resultats').dynatable({
                                     dataset: {
                                         records: data.records
@@ -790,6 +794,7 @@ jQuery(function($) {
 
         // Formulaire multi étapes
         if ($("article.etape").length > 1) {
+            console.log("plusieurs étapes");
             if (false === $('#' + form).parsley({ excluded: "input[type=button], input[type=submit], input[type=reset],  [disabled]" }).validate('block' + window.etapeInscription))
                 return;
             else validation = true;
@@ -802,6 +807,7 @@ jQuery(function($) {
         }
         // Formulaire une seule étape
         else {
+            console.log("une seule étape");
             if ($('#' + form).attr('skip') == 'no') validation = true;
             else if (false === $('#' + form).parsley({ excluded: "input[type=button], input[type=submit], input[type=reset],  [disabled]" }).validate())
                 return;
@@ -823,7 +829,8 @@ jQuery(function($) {
             dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
-                console.log(data);
+                // console.log('requete : ' +this.url + $('#' + form).serialize());
+                // console.log('reponse : ' + data);
                 $("#contenu_formulaire").off("click", "#action_pre_valider");
                 $("#contenu_formulaire").empty().off("*");
                 $("#dialog-modal-enregistrement").enregistre('ferme');

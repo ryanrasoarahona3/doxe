@@ -271,6 +271,8 @@ class Document
 	
     public function creation_FAC() 
     {
+		$detail = '';
+		$adresse = '';
     	$commande = new commande ($this->commande);
 
     	if (empty($commande))  return false;
@@ -288,12 +290,11 @@ class Document
 			}
 			
 			// Detail
-			$detail = '';
+			
 			$detail.= affDate(date('d F Y', strtotime($commande->date_creation))).'<br/>';
 			$detail.= 'Réglement  '.$commande->payement_libelle.'<br/>';
 		
 			// Adresses de livraison
-			$adresse = '';
 			$adresse .= '<strong>'.$client->prenom.' '.$client->nom.'</strong><br>';
 			$adresse .= ''.$client->adresse.'<br>';
 			if ($client->pays == ID_FRANCE) : 

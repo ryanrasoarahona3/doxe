@@ -44,35 +44,35 @@ $_SESSION['recherche'][$recherche] = $_GET;
 
 if ($recherche == 'distinctions') {
 		
-		if (!empty($_GET['annee'])) 
+		if (isset($_GET['annee']) && !empty($_GET['annee'])) 
 			$sqlComplement[] = ' distinctions.annee = "'.$_GET['annee'].'" ';
 			
-		if (!empty($_GET['demande'])  && is_int($_GET['demande'])) 
-			$sqlComplement[] = ' distinctions.demande = "'.$_GET['demande'].'" ';
+		if (isset($_GET['demande']) && !empty($_GET['demande'])) 
+			$sqlComplement[] = ' distinctions.distinction_type = "'.$_GET['demande'].'" ';
 			
-		if (!empty($_GET['decision']) && is_int($_GET['decision'])) 
-			$sqlComplement[] = ' distinctions.decision = "'.$_GET['decision'].'" ';	
+		if (isset($_GET['decision']) && (!empty($_GET['decision']) || $_GET['decision'] == '0')) 
+			$sqlComplement[] = ' distinctions.distinction_type_decision = "'.$_GET['decision'].'" ';	
 			
-		if (!empty($_GET['validation']) && is_int($_GET['validation'])) 
+		if (isset($_GET['validation']) && !empty($_GET['validation'])) 
 			$sqlComplement[] = ' distinctions.validation = "'.$_GET['validation'].'" ';	
 			
-		if (!empty($_GET['couriel_vide']) && ($_GET['couriel_vide']==1) ) 
+		if (isset($_GET['couriel_vide']) && !empty($_GET['couriel_vide']) && ($_GET['couriel_vide']==1) ) 
 			$sqlComplement[] = ' personnes.courriel IS NULL ';	
 		
-		if (!empty($_GET['couriel_vide']) && ($_GET['couriel_vide']==0) ) 
+		if (isset($_GET['couriel_vide']) && !empty($_GET['couriel_vide']) && ($_GET['couriel_vide']==0) ) 
 			$sqlComplement[] = ' personnes.courriel IS NOT NULL ';	
 			
-		if (!empty($_GET['region']) )
+		if (isset($_GET['region']) && !empty($_GET['region']) )
 			$sqlComplement[] = ' regions.id = '.$_GET['region'];	
 		
-		if (!empty($_GET['documents_complets']) && ($_GET['documents_complets']==1)  && is_int($_GET['documents_complets'])) 
+		if (isset($_GET['documents_complets']) && !empty($_GET['documents_complets']) && ($_GET['documents_complets']==1)  && is_int($_GET['documents_complets'])) 
 			$sqlComplement[] = ' distinctions.documents_complets = 1 ';	
 		
-		if (!empty($_GET['documents_complets']) && ($_GET['documents_complets']==0)  && is_int($_GET['documents_complets'])) 
+		if (isset($_GET['documents_complets']) && !empty($_GET['documents_complets']) && ($_GET['documents_complets']==0)  && is_int($_GET['documents_complets'])) 
 			$sqlComplement[] = ' distinctions.documents_complets = 0 ';	
 			
 			
-		if (!empty($_GET['num_demande'])) 
+		if (isset($_GET['num_demande']) && !empty($_GET['num_demande'])) 
 			$sqlComplement[] = ' LOWER(distinctions.num_demande) LIKE "%'.traiteTexte($_GET['num_demande']).'%" ';
 		
 		
@@ -129,7 +129,7 @@ WHERE personnes.etat = 1  AND ';
 	$sql .= lister($sqlComplement, ' AND ');
 		
 		// SORTIE DE LA REQUETTE
-		//echo $sql;
+		// echo $sql;
 		
 		
 		$_SESSION['last']['sql'] = $sql;

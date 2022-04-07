@@ -25,7 +25,7 @@
 				<fieldset class="col05">
 				<label for="demande">Demande</label>
 				<select type="text" name="demande" id="demande" >
-					<option>Toutes</option>
+					<option value="">Toutes</option>
 					<?php echo $menuDemande; ?>
 				</select>
 				</fieldset>
@@ -33,7 +33,7 @@
 				<fieldset class="col05">
 				<label for="decision">Décision du jury</label>
 				<select type="text" name="decision" id="decision" >
-					<option>Toutes</option>
+					<option value="" >Toutes</option>
 					<option value="0">En attente</option>
 					<?php echo $menuDecision; ?>
 				</select>
@@ -51,7 +51,7 @@
 				<fieldset class="col05">
 				<label for="documents_complets">Documents complets</label>
 				<select type="text" name="documents_complets" id="documents_complets" >
-					<option>Tous</option>
+					<option value="" >Tous</option>
 					<option value="1" <?php if( (isset($choixRecherche)) && ($choixRecherche['documents_complets'] == 1)) echo 'selected' ?>>Oui</option>
 					<option value="0" <?php if( (isset($choixRecherche)) && ($choixRecherche['documents_complets'] == 0)) echo 'selected' ?>>Non</option>
 				</select>
@@ -60,7 +60,7 @@
 				<fieldset class="col01">
 				<label for="couriel_vide">Courriel</label>
 				<select type="text" name="couriel_vide" id="couriel_vide" >
-					<option>Tous</option>
+					<option value="" >Tous</option>
 					<option value="1" <?php if( (isset($choixRecherche)) && ($choixRecherche['couriel_vide'] == 1)) echo 'selected' ?>>Non renseigné</option>
 					<option value="0" <?php if( (isset($choixRecherche)) && ($choixRecherche['couriel_vide'] == 0)) echo 'selected' ?>>Renseigné</option>
 				</select>

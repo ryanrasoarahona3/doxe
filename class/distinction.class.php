@@ -42,6 +42,7 @@ class Distinction
     public $domaines_autres;
     public $domaines_serialize;
     public $distinction_avis_label;
+    public $date_saisie;
     
     // SQL
     public $reqModifie;
@@ -456,15 +457,15 @@ class Distinction
             		}
                     
                     // Enregistrements annexes
-                    if (count($this->activites) > 0)
+                    if (isset($this->activites) && is_countable($this->activites) && count($this->activites) > 0)
                         $retour = $this->sauveActivites();
-                    if (count($this->activites_passees) > 0)
+                    if (isset($this->activites_passees) && is_countable($this->activites_passees) && count($this->activites_passees) > 0)
                         $retour = $this->sauveActivites();
-                    if (count($this->parrains) > 0)
+                    if (isset($this->parrains) && is_countable($this->parrains) && count($this->parrains) > 0)
                         $retour = $this->sauveParrains();
-                    if (count($this->distinctions) > 0)
+                    if (isset($this->distinctions) && is_countable($this->distinctions) && count($this->distinctions) > 0)
                         $retour = $this->sauveDistinctions();
-                    if (count($this->documents) > 0)
+                    if (isset($this->documents) && is_countable($this->documents) && count($this->documents) > 0)
                         $retour = $this->sauveDocuments();
                     
                     return $resultat;
@@ -487,15 +488,15 @@ class Distinction
                 if ($resultat === true) {
                     
                     // Enregistrements annexes
-                    if (count($this->activites) > 0)
+                    if (is_countable($this->activites) && count($this->activites) > 0)
                         $retour = $this->sauveActivites();
-                    if (count($this->activites_passees) > 0)
+                    if (is_countable($this->activites_passees) && count($this->activites_passees) > 0)
                         $retour = $this->sauveActivites();
-                    if (count($this->parrains) > 0)
+                    if (is_countable($this->parrains) && count($this->parrains) > 0)
                         $retour = $this->sauveParrains();
-                    if (count($this->distinctions) > 0)
+                    if (is_countable($this->distinctions) && count($this->distinctions) > 0)
                         $retour = $this->sauveDistinctions();
-                    if (count($this->documents) > 0)
+                    if (is_countable($this->documents) && count($this->documents) > 0)
                         $retour = $this->sauveDocuments();
                     
                     return $retour;
@@ -519,6 +520,7 @@ class Distinction
         
         if(!empty($this->activites)) {
           foreach ($this->activites as $val) {
+            echo "this->activites : " . $val;
             try {
                 if (!empty($val['fonction_autre'])) $val['fonction']=35;
 
@@ -541,10 +543,11 @@ class Distinction
         }
         if(!empty($this->activites_passees)) {
 			foreach ($this->activites_passees as $val) {
+                echo "this->activites_passees : " . $val['association'];
 				try {
 					if (!empty($val['fonction_autre'])) $val['fonction']=35;
 					
-					$this->reqActivites->bindValue(':association', $val['association'], PDO::PARAM_INT);
+					$this->reqActivites->bindValue(':association', $val['association'], PDO::PARAM_STR);
 					$this->reqActivites->bindValue(':fonction', $val['fonction'], PDO::PARAM_INT);
 					$this->reqActivites->bindValue(':annee_debut', $val['annee_debut'], PDO::PARAM_INT);
 					$this->reqActivites->bindValue(':annee_fin', $val['annee_fin'], PDO::PARAM_INT);
@@ -680,7 +683,7 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->domaines) > 0) {
+        if (is_countable($this->domaines) && count($this->domaines) > 0) {
             foreach ($this->domaines as $cle => $val) {
             	$domaine = selectValeur('distinctions_domaines','id',$val);
                	$aff.= $domaine->nom.', ';

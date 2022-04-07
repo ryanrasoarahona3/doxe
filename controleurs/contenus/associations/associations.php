@@ -24,11 +24,11 @@ $asso->nbrBenevoles();
 
 
 // CA
-if ($asso->association_type == 1) 
-	$president = new personne ($asso->presidents[ANNEE_COURANTE]['id_personne']);
-else {
-	if(!empty($asso->gestionnaire)) $president = new personne ($asso->gestionnaire);
-}
+// if ($asso->association_type == 1) 
+// 	$president = new personne ($asso->presidents[ANNEE_COURANTE]['id_personne']);
+// else {
+// 	if(!empty($asso->gestionnaire)) $president = new personne ($asso->gestionnaire);
+// }
 
 // Délégué
 if ($asso->delegue_special >0 ) {
@@ -36,7 +36,7 @@ if ($asso->delegue_special >0 ) {
 } else {
 	$delegue = getDelegues($asso->region_id,$asso->departement_id,$asso->pays,'associations');
 }
-$emailDelegue = $delegue->courriel;
+// $emailDelegue = $delegue->courriel;
 
 
 $assuranceGratuite = '';
@@ -65,7 +65,7 @@ if (count($asso->nbr_benevoles) > 0 ) {
 				  <td >'.$annee.'</td>
 				  <td align="right">'.$totalBenevoles.'</td>
 				  <td align="right">';
-				$diff = $totalBenevoles - $asso->nbr_benevoles[$annee-1];
+				$diff = $totalBenevoles - (isset($asso->nbr_benevoles[$annee-1]) ? $asso->nbr_benevoles[$annee-1] : 0);
 				if ($diff != 0) {
 					if ($diff>0) $diff = '+ '.$diff;
 					$assuranceGratuite .= $diff.'  bénévole(s)';
@@ -83,6 +83,7 @@ if (count($asso->nbr_benevoles) > 0 ) {
 			}
 		}
 		
+		$plus='';
 		if ($total > $i) {
 		$plus='<a href="#" class="right plus" form-action="associations" form-type="associations" form-id="'.$asso->id_association.'">> Voir '.($total-$limite).' plus</a>';
 	  }

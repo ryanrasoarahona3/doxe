@@ -328,10 +328,10 @@ if ($section == 'distinctions') {
 			$distinction->{$cle} = $val;
 		}			
 	}	
-	$distinction->domaines = $_POST['domaines'];
+	$distinction->domaines = (isset($_POST['domaines']) ? $_POST['domaines'] : '');
 	
 	// Traitements spécifiques
-	$distinction->parrains = $_POST['ajoutParrains_0_nom_tab_resultat'];
+	$distinction->parrains = (isset($_POST['ajoutParrains_0_nom_tab_resultat']) ? $_POST['ajoutParrains_0_nom_tab_resultat'] : '');
 
 	foreach ($_POST as $cle=>$val) {
 		if(substr($cle,0,12) == 'SWFUpload_0_' ) {
@@ -342,7 +342,10 @@ if ($section == 'distinctions') {
 	}	
 	//d($distinction);
 
-	$retour['message'] = $distinction->sauve();				
+	// $retour['message'] = $distinction->sauve();	
+	
+	/* temp */ $distinction->sauve();
+	$retour['message'] = 'message désactivé';				
 	$retour['id'] = $distinction->id_distinction;
 
 }
@@ -453,7 +456,7 @@ if ($section == 'associations_amis') {
 		$commande->sauve();
 		
 		$commande_produit = new commande_produit();
-		$commande_produit->copie(ID_ADHESION_association);
+		$commande_produit->copie(ID_ADHESION_ASSOCIATION);
 		$commande_produit->nom = $commande_produit->nom .' '.$laf->annee;
 		$commande_produit->id_commande = $commande->id_commande;
 		$commande_produit->quantite = 1;
