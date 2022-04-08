@@ -69,7 +69,7 @@ class Commande_produit {
 		 $this->reqAjout = $this->connection->prepare("INSERT INTO  `commerce_commandes_produits` 
 		  (`id`, `id_commande`, `id_source`,`nom`, `quantite`,  `prix`, `tva`, `taux_tva`, `personnalisation`, `poids`, `livrable`) 
 		  VALUES 
-		  ('',  :id_commande, :id_source ,:nom , :quantite ,  :prix , :tva , :taux_tva , :personnalisation , :poids, :livrable );");
+		  (NULL,  :id_commande, :id_source ,:nom , :quantite ,  :prix , :tva , :taux_tva , :personnalisation , :poids, :livrable )");
 	
 		 $this->reqAjout->bindParam(':id_commande', $this->id_commande, PDO::PARAM_INT, 11);
 		 $this->reqAjout->bindParam(':id_source', $this->id_source, PDO::PARAM_INT, 11);

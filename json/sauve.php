@@ -473,6 +473,7 @@ if ($section == 'associations_amis') {
 				$document->creation();
 			}
 		
+		$laf->id_laf = null;
 		$laf->id_commande = $commande->id_commande;
 		$laf->montant = $commande_produit->prix;
 	} 

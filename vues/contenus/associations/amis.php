@@ -7,7 +7,7 @@
 				
 				<?php if (!empty($amis)) : ?>
 					<?php echo $amis ?>
-					<?php echo $fermer ?>
+					<?php echo (isset($fermer) ? $fermer : '') ?>
 				<?php else : ?>
 					<em>Aucune adhésion au Cercle National des Bénévoles</em>
 				<?php endif; ?>
