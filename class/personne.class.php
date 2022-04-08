@@ -616,8 +616,10 @@ ORDER BY distinctions.annee DESC
     					
     					// Rechargement ville
     					$data_ville = selectValeur('villes','id',$this->ville);
-    					$this->ville_label = $data_ville->nom;
-    					$this->code_postal = $data_ville->code_postal;
+    					if (isset($data_ville->nom) && isset($data_ville->code_postal)) {
+							$this->ville_label = $data_ville->nom;
+    						$this->code_postal = $data_ville->code_postal;
+						}
     					
     					/*
     					
@@ -627,8 +629,10 @@ ORDER BY distinctions.annee DESC
     					
     					// Connection Send In Blue
     					$data_ville = selectValeur('villes','id',$this->ville);
-    					$this->ville_label = $data_ville->nom;
-    					$this->code_postal = $data_ville->code_postal;
+    					if (isset($data_ville->nom) && isset($data_ville->code_postal)) {
+							$this->ville_label = $data_ville->nom;
+    						$this->code_postal = $data_ville->code_postal;
+						}
     					
     					sib_personne ($this);
     				

@@ -244,36 +244,39 @@ if ($_SESSION['last']['recherche']['recherche'] == 'distinctions') {
 
 
             //Parrain
-            foreach ($distinction->parrains as $cle => $val) {
-                $parrain = new personne($val);
-                array_push($temp, $parrain->nom . ' ' . $parrain->prenom);
-                array_push($temp, $parrain->id_personne);
-                break;
-            }
-            if (count($distinction->parrains) == 0) {
+            if(isset($distinction->parrains) && (is_array($distinction->parrains) || is_object($distinction->parrains)))
+                foreach ($distinction->parrains as $cle => $val) {
+                    $parrain = new personne($val);
+                    array_push($temp, $parrain->nom . ' ' . $parrain->prenom);
+                    array_push($temp, $parrain->id_personne);
+                    break;
+                }
+            if (isset($distinction->parrains) && is_countable($distinction->parrains) && count($distinction->parrains) == 0) {
                 $vide = '';
                 array_push($temp, $vide);
                 array_push($temp, $vide);
             }
 
             // Activités
-            foreach ($distinction->activites as $cle => $val) {
-                array_push($temp, $val['association']);
-                array_push($temp, $val['fonction_label']);
-                array_push($temp, $val['fonction_autre']);
-                array_push($temp, $val['annee_debut']);
-                if (!empty($val['annee_fin'])) array_push($temp, $val['annee_fin']);
-                else array_push($temp, 'En cours');
-            }
+            if (isset($distinction->activites) && (is_array($distinction->activites) || is_object($distinction->activites)))
+                foreach ($distinction->activites as $cle => $val) {
+                    array_push($temp, $val['association']);
+                    array_push($temp, $val['fonction_label']);
+                    array_push($temp, $val['fonction_autre']);
+                    array_push($temp, $val['annee_debut']);
+                    if (!empty($val['annee_fin'])) array_push($temp, $val['annee_fin']);
+                    else array_push($temp, 'En cours');
+                }
 
-            foreach ($distinction->activites_passees as $cle => $val) {
-                array_push($temp, $val['association']);
-                array_push($temp, $val['fonction_label']);
-                array_push($temp, $val['fonction_autre']);
-                array_push($temp, $val['annee_debut']);
-                if (!empty($val['annee_fin'])) array_push($temp, $val['annee_fin']);
-                else array_push($temp, 'En cours');
-            }
+            if(isset($distinction->activites_passees) && (is_array($distinction->activites_passees) || is_object($distinction->activites_passees)))
+                foreach ($distinction->activites_passees as $cle => $val) {
+                    array_push($temp, $val['association']);
+                    array_push($temp, $val['fonction_label']);
+                    array_push($temp, $val['fonction_autre']);
+                    array_push($temp, $val['annee_debut']);
+                    if (!empty($val['annee_fin'])) array_push($temp, $val['annee_fin']);
+                    else array_push($temp, 'En cours');
+                }
 
             $data = $temp;
 

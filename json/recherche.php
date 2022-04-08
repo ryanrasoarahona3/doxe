@@ -44,6 +44,8 @@ $_SESSION['recherche'][$recherche] = $_GET;
 
 if ($recherche == 'distinctions') {
 		
+		if(isset($_GET['personne']) && !empty($_GET['personne']) && intval($_GET['personne']) > 0)
+			$sqlComplement[] = ' distinctions.personne = "'.$_GET['personne'].'" ';
 		if (isset($_GET['annee']) && !empty($_GET['annee'])) 
 			$sqlComplement[] = ' distinctions.annee = "'.$_GET['annee'].'" ';
 			
@@ -72,8 +74,8 @@ if ($recherche == 'distinctions') {
 			$sqlComplement[] = ' distinctions.documents_complets = 0 ';	
 			
 			
-		if (isset($_GET['num_demande']) && !empty($_GET['num_demande'])) 
-			$sqlComplement[] = ' LOWER(distinctions.num_demande) LIKE "%'.traiteTexte($_GET['num_demande']).'%" ';
+		if (isset($_GET['choix_num_demande']) && !empty($_GET['choix_num_demande'])) 
+			$sqlComplement[] = ' LOWER(distinctions.num_demande) LIKE "%'.traiteTexte($_GET['choix_num_demande']).'%" ';
 		
 		
 		// LIMITE DE DELEGUES (pour la france uniquement)

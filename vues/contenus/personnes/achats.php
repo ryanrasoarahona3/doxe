@@ -1,5 +1,5 @@
 <div class="contenu achats">
-	<h2><span class="icon-achats"></span> Achats <?php echo $totalAchats ?></h2>
+	<h2><span class="icon-achats"></span> Achats : <?php echo $totalAchats ?></h2>
 
 	<a href="<?php echo SITE_ADMIN ?>commerce/orders/add?id_utilisateur=personnes_<?php echo $perso->id_personne ?>" class="right"><button type="button" class="ajouter_externe right"></button></a>
 	<?php echo $plus ?>

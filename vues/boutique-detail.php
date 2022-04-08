@@ -30,8 +30,8 @@
 				<p class="<?php echo $alerte?>">Type de paiement : <?php echo $commande->payement_libelle?> <br>
 				<?php   echo 'Référence : '.$commande->reference ?><br><br>
 				<strong>État du paiement : <?php echo $commande->etat_libelle ?></strong></p>
-				<?php echo $facture ?>
-				<?php echo $recu ?>
+				<?php echo isset($facture) ? : '' ?>
+				<?php echo isset($reçu) ? $recu : '' ?>
 			</article>
 		</div>
 	</div>

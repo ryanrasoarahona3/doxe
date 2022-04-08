@@ -320,7 +320,7 @@ function recapCommande($id) {
         $message .= '<td>'.$produit->quantite.'</td>';
         $message .= '<td>'.formateMontant($produit->prix).'</td>';
         $message .= '<td><strong>'.formateMontant($produit->prix*$produit->quantite).'</strong></td>';
-        $tab .= '</tr>';
+        $message .= '</tr>';
     }
 
     $message .='</table>';

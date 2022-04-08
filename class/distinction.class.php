@@ -1,4 +1,6 @@
 <?php
+
+
 class Distinction
 {
     
@@ -275,7 +277,7 @@ class Distinction
 			cons_admin_fonctions.nom AS fonction_label
 		FROM distinctions_activites 
 			LEFT JOIN cons_admin_fonctions ON distinctions_activites.fonction = cons_admin_fonctions.id
-			LEFT JOIN cons_admin_fonctions ON distinctions_activites.fonction = cons_admin_fonctions.id
+            LEFT JOIN distinctions_fonctions_autres ON distinctions_fonctions_autres.id_activite =  distinctions_activites.id
 		WHERE distinctions_activites.distinction = :id_distinction AND distinctions_activites.annee_fin IS NULL
 		');
         $this->reqChargeActivites->bindParam(':id_distinction', $this->id_distinction, PDO::PARAM_INT, 11);
@@ -345,7 +347,7 @@ class Distinction
             }
             
             // Restauration domaines
-            $this->domaines = unserialize($this->domaines);
+            $this->domaines = (isset($this->domaines) && $this->domaines != null ? unserialize($this->domaines) : null);
             $avis = selectValeur('distinctions_avis','id',$this->avis);
             $this->distinction_avis_label =  (isset($avis->nom) ? $avis->nom : '');
             

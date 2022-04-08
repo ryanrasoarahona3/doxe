@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once($_SESSION['ROOT'].'libs/requires.php');
+require_once($_SESSION['ROOT'].'amis/commerce.php');
 
 $form = new stdClass;
 

@@ -26,7 +26,7 @@ if (isset($distinction)) {
 }
 
 // Ajout
-if ( (!isset($_GET['id_lien'])) && (!$isChoixPersonne) ) {	
+if ( (!isset($_GET['id_lien'])) && (!isset($isChoixPersonne) || !$isChoixPersonne) ) {	
 	$form->label_validation = "Ajouter / Enregistrer";
 	$form->action = 'modifier'; // On laisse modifier pour rester sur la même page
 	
@@ -49,7 +49,7 @@ if ( (!isset($_GET['id_lien'])) && (!$isChoixPersonne) ) {
 		if ($val != 'Autres' ) $choixDomaines .= '<br/><input type="checkbox" value="'.$id.'"  id="domaines" 	name="domaines[]"> '.$val.' ';
 	}
 	$choixDomaines .= '<br/><input type="checkbox" value="9"  id="domaines" name="domaines[]"> Autres ';
-	$choixDomaines .= '<input type="text" value="'.$distinction->domaines_autres.'" id="domaines_autres" name="domaines_autres" style="width:200px;">';
+	$choixDomaines .= '<input type="text" value="'.(isset($distinction->domaines_autres) ? $distinction->domaines_autres : '').'" id="domaines_autres" name="domaines_autres" style="width:200px;">';
 }
 // Récupération GET et contenu si modification
 else   {

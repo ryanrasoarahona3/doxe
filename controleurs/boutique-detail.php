@@ -41,4 +41,60 @@ $modifier = '<button type="button" form-action="boutique" form-type="ajouter" fo
 //$_SESSION['utilisateur'] = 'utilisateur' ;
 
 include_once(ROOT.'/vues/'.$controlleur.'.php');
+
+// Declarations
+
+function recapCommande($id) {
+    $commande = new commande($id);
+
+    $message = "<h3>Récapitulatif commande N° ".$commande->numero_commande."</h3><strong> ".affDate(strtotime($commande->date_creation), true)."</strong></p>";
+    $message .='<div id="panier"><table border="0" width="600">
+			<thead>
+			<tr><th>Produit</th><th>Quantité</th><th>Prix</th><th>Total</th></tr>
+			</thead>
+			';
+	
+    foreach ($commande->produits as $id=>$produit) {
+
+        $message .= '<tr>';
+        $message .= '<td>'.$produit->nom;
+        if (!empty($produit->personnalisation)) $message .= '<br><strong>'.implode(' ',unserialize($produit->personnalisation)).'</strong>';
+        $message .='</td>';
+       
+        $message .= '<td>'.$produit->quantite.'</td>';
+        $message .= '<td>'.formateMontant($produit->prix).'</td>';
+        $message .= '<td><strong>'.formateMontant($produit->prix*$produit->quantite).'</strong></td>';
+        $message .= '</tr>';
+    }
+
+    $message .='</table>';
+
+    $message .='<table border="0" width="600">
+		<tr><td align="right"><strong>Total '. formateMontant(montantGlobal($commande)) .' TTC</strong></td></tr>
+		</table></div>';
+    return $message;		
+}
+
+function montantGlobal($commande=false) {
+    $total=0;
+    if (!$commande) {
+        $produits = $_SESSION['panier']['produits'];
+        foreach ($produits as $id => $prod) {
+            $total += $prod['prix'] * $prod['quantite'];
+        }
+        if (isLivrable()) {
+       		if (isset($_SESSION['adresse_livraison']['pays'])) $total += calculeLivraison($_SESSION['adresse_livraison']['pays']);
+        	else $total += calculeLivraison(ID_FRANCE);
+        }
+        
+    } else {
+        $produits = $commande->produits;
+        foreach ($produits as $id => $prod) {
+            $total += $prod->prix * $prod->quantite;
+        }
+       
+    }
+
+   return $total;
+}
 ?>

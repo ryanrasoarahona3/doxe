@@ -644,7 +644,7 @@ function getDelegues($region,$departement,$pays,$type='personnes') {
 			AND (delegues_regions.region =".$region." OR  delegues_departements.departement =".$departement." )
 			ORDER BY personnes.delegue_type DESC, personnes.delegue_adjoint ASC
 			LIMIT 1";
-			echo $req;
+			// echo $req;
 
 		try {
 		  	$requete = $connect->query($req);
@@ -768,12 +768,12 @@ function decode($filename,$path) {
 				$retour .=  $utilisateur->prenom.' '.$utilisateur->nom.'<br>';
 				$retour .=  $utilisateur->adresse.'<br>';
 				$retour .=  $utilisateur->code_postal.' '.$utilisateur->ville_label.'<br>';
-				$retour .=  $commande->pays_label.'<br>';
+				$retour .=  $commande->livraison_pays_label.'<br>';
 			} else {
 				$retour .=  $utilisateur->prenom.' '.$utilisateur->nom.'<br>';
 				$retour .=  $utilisateur->adresse.'<br>';
 				$retour .=  $utilisateur->code_pays.' '.$utilisateur->ville_pays.'<br>';
-				$retour .=  $commande->pays_label.'<br>';
+				$retour .=  $commande->livraison_pays_label.'<br>';
 			}
 		}
 		

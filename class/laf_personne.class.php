@@ -229,7 +229,7 @@ WHERE laf_adhesions_personnes.id = :id_laf');
   					 if( $resultat===true ) {
   					 
     					// Enregistrement des associations
-    						if (count($this->associations)>0) $retour = $this->sauveAssociations();		
+    						if (isset($this->associations) && is_countable($this->associations) && count($this->associations)>0) $retour = $this->sauveAssociations();		
     						return true;
     								
  					 } else print_r( $this->reqModifie->errorInfo());

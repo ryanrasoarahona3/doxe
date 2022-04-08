@@ -69,16 +69,20 @@
 			
 					<fieldset class="col05">
 					<label for="personne">Personne</label>
-					<input type="text" name="personne"  value="<?php echo (isset($choixRecherche['personne']) ? $choixRecherche['personne'] : '') ?>" id="personne"  />
-					<ul id="personne_resultat">
+					<input type="text" name="choix_personne"  id="choix_personne"  />
+					<ul id="choix_personne_resultat">
 						
 					</ul>
-					<input hidden type="text" name="personne" id="personne" value="<?php echo (isset($choixRecherche['personne']) ? $choixRecherche['personne'] : '') ?>"   >
+					<input hidden type="text" name="personne" id="personne" >
 					</fieldset>
 					
 					<fieldset class="col05">
 					<label for="num_demande">Numéro de demande</label>
-					<input type="text" name="num_demande"  value="<?php echo (isset($choixRecherche['num_demande']) ? $choixRecherche['num_demande'] : '') ?>" id="num_demande"  />
+					<input type="text" name="choix_num_demande"  id="choix_num_demande"  />
+					<ul id="choix_num_demande_resultat">
+						
+					</ul>
+					<input hidden type="text" name="num_demande" id="num_demande" >
 					</fieldset>
 					
 					<fieldset class="col05">

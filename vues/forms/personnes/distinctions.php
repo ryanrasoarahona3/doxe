@@ -4,7 +4,7 @@
 	<form id="ajouter_distinctions">
 		<article class="distinctions">
 		
-		<h2><span class="icon-distinctions"></span> Demande de Distinction</h2>
+		<h2><span class="icon-distinctions"></span> Demande de Distinction<?php ?></h2>
 		<br class="clear">	
 			<div>
 				
@@ -16,7 +16,7 @@
 					<ul id="choix_personne_resultat">
 						<?php echo isset($selectPersonne) ? $selectPersonne : '' ?>
 					</ul>
-					<input hidden type="text" name="personne" id="personne" value="<?php echo (isset($distinction->personne) ? $distinction->personne : '') ?>"   required>
+					<input hidden type="text" name="personne" id="personne" value="<?php echo (isset($distinction->personne) ? $distinction->personne : (isset($perso->id_personne) ? $perso->id_personne : '')) ?>"   required>
 					</fieldset>
 				
 				<?php endif; ?>
@@ -41,7 +41,7 @@
 					
 				<fieldset class="col1" >
 					<label for="nbr_annees">Nombre d'années de bénévolat</label>
-					<input type="number" name="nbr_annees"  value="<?php echo $distinction->nbr_annees?>" id="nbr_annees"   /> ans
+					<input type="number" name="nbr_annees"  value="<?php echo (isset($distinction->nbr_annees) ? $distinction->nbr_annees : '') ?>" id="nbr_annees"   /> ans
 					
 				</fieldset>
 				
@@ -484,7 +484,7 @@
 				<script language="javascript"> 
 function maxlength(text,length) {if(text.innerText.length>length) text.innerText=text.innerText.substr(0,length); } 
 </script> 
-				<textarea name="commentaire"   id="commentaire" maxlength="200" onkeypress=\"javascript:maxlength(this,200);\"><?php echo $distinction->commentaire ?></textarea>
+				<textarea name="commentaire"   id="commentaire" maxlength="200" onkeypress=\"javascript:maxlength(this,200);\"><?php echo isset($distinction->commentaire) ? $distinction->commentaire : '' ?></textarea>
 				</fieldset>
 				
 	<?php endif; ?>
@@ -495,10 +495,10 @@ function maxlength(text,length) {if(text.innerText.length>length) text.innerText
 		<div id="erreur">
 				</div>
 		<div id="zone_validation" style="margin-bottom:100px;float:none;clear: both;overflow: auto;">
-			<?php if ($form->suppression) : ?>
+			<?php if (isset($form->suppression)) : ?>
 				<button type="button" id="action_supprimer" class="annuler">- Supprimer</button>
 			<?php else : ?>
-				<?php echo $alerte_supprime ?>
+				<?php echo (isset($alerte_supprime) ? $alerte_supprime : '') ?>
 			<?php endif; ?>
 			<?php if ($form->annulation) : ?><button type="button" id="action_annuler" class="annuler">X Annuler</button><?php endif; ?>
 			
@@ -512,10 +512,10 @@ function maxlength(text,length) {if(text.innerText.length>length) text.innerText
 		<input type="hidden" id="destination_validation" name="destination_validation" value="<?php echo $form->destination_validation ?>">
 		<input type="hidden" id="action" name="action" value="<?php echo $form->action ?>">
 		<input type="hidden" id="section" name="section" value="<?php echo $form->section ?>">
-		<?php if(!$isChoixPersonne) : ?>
+		<?php if(!isset($isChoixPersonne) || !$isChoixPersonne) : ?>
 			<input type="hidden" id="personne" name="personne" value="<?php echo (isset($form->personne) && $form->personne!=null ? $form->personne : '') ?>">
 		<?php endif; ?>
-		<input type="hidden" id="id_lien" name="id_lien" value="<?php echo $form->id_lien ?>">
+		<input type="hidden" id="id_lien" name="id_lien" value="<?php echo (isset($form->id_lien) ? $form->id_lien : '') ?>">
 		
 		
 	</form>

@@ -7,7 +7,7 @@
 		<h2><span class="icon-amis"></span> Cercle National des Bénévoles</h2>
 			
 			<div>
-				<?php echo $alerte_chargement  ?>
+				<?php echo (isset($alerte_chargement) ? $alerte_chargement : '')  ?>;
 				
 				
 				<div class="zone_form_amis">
@@ -59,14 +59,14 @@
 					
 						<fieldset class="reference">
 							<label for="reference">Référence du paiement (n°chèque...)</label>
-							<input type="text" name="reference"  value="<?php echo $commande->reference ?>" id="reference"  />
+							<input type="text" name="reference"  value="<?php echo (isset($commande->reference) ? $commande->reference : '') ?>" id="reference"  />
 						</fieldset>
 						
 						
 					
 						<fieldset class="ladate">
 							<label for="date_paiement">Date du paiement</label>
-							<input type="text" name="date_creation"  value="<?php if($commande->date_creation != '0000-00-00') echo $commande->date_creation ?>" id="date_paiement" class="date" required>
+							<input type="text" name="date_creation"  value="<?php if(isset($commande->date_creation) && $commande->date_creation != '0000-00-00') echo $commande->date_creation ?>" id="date_paiement" class="date" required>
 						</fieldset>
 
 					<hr>
@@ -83,7 +83,7 @@
 			
 				<fieldset class="">
 				<label for="organisme_payeur">Nom de l'association ou de l'organisme payeur <em>(le cas échéant)</em></label>
-				<input type="text" name="organisme_payeur"  value="<?php echo $laf->organisme_payeur?>" id="organisme_payeur"  />
+				<input type="text" name="organisme_payeur"  value="<?php echo (isset($laf->organisme_payeur) ? $laf->organisme_payeur : '') ?>" id="organisme_payeur"  />
 				</fieldset>
 				
 				<fieldset class="">
@@ -94,7 +94,7 @@
 				<div id="delegue_oui">
 					<fieldset class="">
 					<label for="zone_delegation">Quelle est votre zone de délégation ?</label>
-					<input type="text" name="zone_delegation"  value="<?php echo $laf->zone_delegation?>" id="zone_delegation"  />					
+					<input type="text" name="zone_delegation"  value="<?php echo (isset($laf->zone_delegation) ? $laf->zone_delegation : '') ?>" id="zone_delegation"  />					
 					</fieldset>
 					
 				</div>
@@ -115,7 +115,7 @@
 				<div id="distinction_oui">
 					<fieldset class="">
 					<label for="distinction_annee">En quelle année avez-vous reçu(e) cette distinction ?</label>
-					<input type="text" name="distinction_annee"  value="<?php echo $laf->distinction_annee ?>" id="distinction_annee"  />
+					<input type="text" name="distinction_annee"  value="<?php echo (isset($laf->distinction_annee) ? $laf->distinction_annee : '') ?>" id="distinction_annee"  />
 					</fieldset>
 					
 					<fieldset class="">
@@ -150,10 +150,10 @@
 		<div id="erreur">
 				</div>
 		<div id="zone_validation">
-			<?php if ($form->suppression) : ?>
+			<?php if (isset($form->suppression) && $form->suppression) : ?>
 				<button type="button" id="action_supprimer" class="annuler">- Supprimer</button>
 			<?php else : ?>
-				<?php echo $alerte_supprime ?>
+				<?php echo (isset($alerte_supprime) ? $alerte_supprime : '') ?>
 			<?php endif; ?>
 			<?php if ($form->annulation) : ?><button type="button" id="action_annuler" class="annuler">X Annuler</button><?php endif; ?>
 			<button type="button" id="action_pre_valider"><span class="icon-associations"></span>  <?php echo $form->label_validation ?></button>

@@ -15,8 +15,10 @@ if (isset($_GET['id'])) {
 }
 
 $perso->commandes();
+$totalAchats = 0;
 
 if (!empty($perso->commandes)) {
+	$achats = '';
 	foreach ($perso->commandes as $order) {
 		if ($order->id_etat != ETAT_PAYE) $alerte = ' class="attention" ';
 		else $alerte = ' ';
@@ -29,22 +31,15 @@ if (!empty($perso->commandes)) {
 				   <td align="right">'.$order->payement_libelle.'</td>
 				  <td align="right">'.$order->etat_libelle.'</td>
 				  <td class="actions">';
-				   if (($order->etat == ETAT_PAYE) || ($order->id_payement == ID_MANDAT)) $achats .= '<button type="button" form-action="telecharger" form-element="FAC_'.$order->id_commande.'"  class="action telecharger right" title="Télécharger la facture"></button>';
-				    if (($order->etat == ETAT_PAYE) || ($order->id_payement == ID_MANDAT)) $achats .= '<button form-action="envoyer_fichier" form-element="FAC_'.$order->numero_commande.'" form-type="personnes_achat" class="right envoyer_fichier action" title="Envoyer le fichier"></button>';
+				   if (($order->id_etat == ETAT_PAYE) || ($order->id_payement == ID_MANDAT)) $achats .= '<button type="button" form-action="telecharger" form-element="FAC_'.$order->id_commande.'"  class="action telecharger right" title="Télécharger la facture"></button>';
+				    if (($order->id_etat == ETAT_PAYE) || ($order->id_payement == ID_MANDAT)) $achats .= '<button form-action="envoyer_fichier" form-element="FAC_'.$order->numero_commande.'" form-type="personnes_achat" class="right envoyer_fichier action" title="Envoyer le fichier"></button>';
 					$achats .= '<button form-action="lien" form-element="/boutique/detail/'.$order->id_commande.'" class="right details action" title="Voir la comande"></button> ';
 				  $achats .= '</td>
 				</tr>';
-			$i++;
-	
-		if ($limite && ($i == $limite)) break;
+	$totalAchats++;
 	  
 	}
 }
-
-
-if (count($perso->commandes) > $i) {
-		$plus='<a href="#" class="right plus" form-action="personnes" form-type="achats" form-id="'.$perso->id_personne.'">> Voir '.(count($perso->commandes)-$limite).' plus</a>';
-} 
 
 
 

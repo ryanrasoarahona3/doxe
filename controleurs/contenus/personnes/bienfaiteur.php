@@ -6,7 +6,6 @@ if (isset($_GET['id'])) {
 	
 	require_once($_SESSION['ROOT'].'libs/requires.php');
 	$perso = new personne($_GET['id']);
-	$limite = false;
 	$fermer ='<div id="zone_validation">
 						<button type="button" id="action_annuler" class="annuler">X Fermer</button>
 				</div>';
@@ -16,26 +15,31 @@ if (isset($_GET['id'])) {
 
 
 $perso->commandes();
-
+$i=0;
+$bienfaiteur='';
 if(isset($perso->commandes) && is_array($perso->commandes) )
 foreach ($perso->commandes as $commande) {
 	
 	$detail_commande = new commande($commande->id_commande);
+	// echo count($detail_commande->produits);
 	// Cherche si l'achat contien un DON
 	$don = 0;
-	if($detail_commande != null && is_array($detail_commande))
+	if($detail_commande != null && (is_array($detail_commande) || is_object($detail_commande) ))
 		foreach ($detail_commande->produits as $id_produit=>$produit) {
-				
+				// echo $produit->nom,' ', $produit->id_source, ' ', ID_DON, ' ', $produit->prix, '<br>';
 				if ($produit->id_source == ID_DON) $don = $don + $produit->prix;
 				//print_r($detail_commande);
 		}	
 	
 	
 	if ($don!=0) {
-	
+		$paye = true;
 		// Vérification du/des paiements
 		
-		if ($detail_commande->etat != ETAT_PAYE) $alerte = ' class="attention" ';
+		if ($detail_commande->etat != ETAT_PAYE) {
+			$alerte = ' class="attention" ';
+			$paye = false;
+		}
 		else $alerte = ' ';
 		
 		$bienfaiteur .= '<tr '.$alerte.'>
@@ -46,21 +50,21 @@ foreach ($perso->commandes as $commande) {
 				  
 				  <td class="actions">';
 				  
-				  if ($paye) $bienfaiteur .= '<button type="button" form-action="telecharger" form-element="DON_'.$commande->commande_number.'"  class="action telecharger right" title="Télécharger le reçu fiscal"></button>';
-				  if ($paye) $bienfaiteur .= '<button form-action="envoyer_fichier" form-element="DON_'.$commande->commande_number.'" form-type="personnes_achat" class="right envoyer_fichier action" title="Envoyer le reçu"></button>';
+				  if ($paye) $bienfaiteur .= '<button type="button" form-action="telecharger" form-element="DON_'.$commande->numero_commande.'"  class="action telecharger right" title="Télécharger le reçu fiscal"></button>';
+				  if ($paye) $bienfaiteur .= '<button form-action="envoyer_fichier" form-element="DON_'.$commande->numero_commande.'" form-type="personnes_achat" class="right envoyer_fichier action" title="Envoyer le reçu"></button>';
 					//$bienfaiteur .= '<button form-action="lien" form-element="'.SITE_ADMIN.'commerce/commandes/'.$commande->commande_id.'" class="right details action" title="Voir la comande"></button> 
 					$bienfaiteur .= '<button form-action="lien" form-element="/boutique/detail/'.$commande->id_commande.'" class="right details action" title="Voir la comande"></button> 
 				  </td>
 				</tr>';
 			$i++;
 	
-		if ($limite && ($i == $limite)) break;
+		if (($i == $limite)) break;
 	} 
 }
 
 
-if ($total > $i) {
-		$plus='<a href="#" class="right plus" form-action="personnes" form-type="achats" form-id="'.$perso->id_personnes.'">> Voir '.($total-$limite).' plus</a>';
+if ($i==$limite) {
+		$plus='<a href="#" class="right plus" form-action="personnes" form-type="achats" form-id="'.$perso->id_personne.'">> Voir plus</a>';
 }
 
 

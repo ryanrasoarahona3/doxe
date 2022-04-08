@@ -22,9 +22,9 @@ include_once(ROOT.'/vues/'.$controlleur.'.php');
 
 <script>
 jQuery(function($) {
-	$('#personne').autoCompleteSection('personne',3,false,'personne');
+	$('#choix_personne').autoCompleteSection('personne',3,false,'personne');
 	
-	$('#num_demande').autoCompleteSection('personne',3,false,'personne');
+	$('#choix_num_demande').autoCompleteSection('num_demande',3,false,'num_demande');
 	
 	
 	<?php if (isset($auto) && $auto) : ?>

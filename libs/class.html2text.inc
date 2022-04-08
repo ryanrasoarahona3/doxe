@@ -232,8 +232,8 @@ class html2text
         '--',
         '-',
         '*',
-        '£',
-        'EUR',                                  // Euro sign. € ?
+        'ï¿½',
+        'EUR',                                  // Euro sign. ï¿½ ?
         '',                                     // Unknown/unhandled entities
         ' '                                     // Runs of spaces, post-handling
     );
@@ -418,13 +418,15 @@ class html2text
         $this->_link_count = 0;
         $this->_link_list = '';
 
-        $text = trim(stripslashes($this->html));
+        $text = '';
+        if (isset($this->html) && $this->html != null)
+            $text = trim(stripslashes($this->html));
 
         // Run our defined search-and-replace
-        $text = preg_replace($this->search, $this->replace, $text);
+        $text = @preg_replace($this->search, $this->replace, $text);
 
         // Strip any other HTML tags
-        $text = strip_tags($text, $this->allowed_tags);
+        $text = @strip_tags($text, $this->allowed_tags);
 
         // Bring down number of empty lines to 2 max
         $text = preg_replace("/\n\s+\n/", "\n\n", $text);
