@@ -364,6 +364,7 @@ if ($section == 'personnes_amis') {
 	if (!empty($_POST['id_lien'])) {
 		// Charge pour récupérer les infos précédentes
 		$laf = new laf_personne($_POST['id_lien']);
+		// echo $laf;
 	} else $laf = new laf_personne();
 	
 	
@@ -405,10 +406,13 @@ if ($section == 'personnes_amis') {
 				$document->creation();
 			}
 		
+		$laf->id_laf=null;
 		$laf->id_commande = $commande->id_commande;
 		$laf->montant = $commande_produit->prix;
 	} 
-		
+	
+	echo $laf->id_personne;
+
 	$retour['message'] = $laf->sauve();	
 	$retour['id'] = $_POST['id_personne'];
 	

@@ -77,7 +77,7 @@ class laf_personne {
 		  VALUES 
 		   (NULL, :id_personne, NOW(),:annee,  :connaissance, :organisme_payeur, :delegue, :zone_delegation, :distinction, :distinction_annee, :annuaire, :informations_bp,:id_commande) ;");
  
-		 $this->reqAjout->bindParam(':id_personne', $this->id_personne, PDO::PARAM_INT, 11); 
+		 $this->reqAjout->bindParam(':id_personne', $this->id_personne, PDO::PARAM_INT); 
 		 $this->reqAjout->bindParam(':annee', $this->annee, PDO::PARAM_STR, 4);
 		 $this->reqAjout->bindParam(':connaissance', $this->connaissance, PDO::PARAM_INT, 11); 
 		 $this->reqAjout->bindParam(':organisme_payeur', $this->organisme_payeur, PDO::PARAM_STR, 255);
@@ -194,9 +194,10 @@ WHERE laf_adhesions_personnes.id = :id_laf');
 				try {
 				   
   					 $resultat = $this->reqAjout->execute();
-   					if( $resultat===true ) {
+
+   					if( $resultat==true ) {
    						$this->id_laf = $this->connection->lastInsertId('id'); 
-   						return true;
+   						return $this->reqAjout;
    					} else print_r( $this->reqAjout->errorInfo());
    					/*
   					 if( $resultat===true ) {

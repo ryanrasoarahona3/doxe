@@ -20,6 +20,7 @@ if (isset($_GET['plus'])){
 		$perso->lesAmis();
 	
 		$total = (isset($perso->lesamis) && is_countable($perso->lesamis) ? count($perso->lesamis) : 0);
+		echo $total;
 		$i=0;
 		$amis = '';
 
