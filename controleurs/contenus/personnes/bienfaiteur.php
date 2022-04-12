@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
 $perso->commandes();
 $i=0;
 $bienfaiteur='';
-if(isset($perso->commandes) && is_array($perso->commandes) )
+if(isset($perso->commandes) &&  $perso->commandes() != null && is_array($perso->commandes) )
 foreach ($perso->commandes as $commande) {
 	
 	$detail_commande = new commande($commande->id_commande);
