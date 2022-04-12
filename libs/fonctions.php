@@ -9,16 +9,16 @@ function connect() {
 	try {
 	  $dns = 'mysql:host='.HOST.';dbname='.DBNAME.'';
 	  $utilisateur = USER;
-	  $motDePasse = '';
+	  $motDePasse = PASS;
  
-	  // Options de connection
-	//   $options = array(
-	// 	PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8",
-	// 	PDO::ATTR_ERRMODE => "PDO::ERRMODE_EXCEPTION"
-	//   );
+	//   Options de connection
+	  $options = array(
+		PDO::MYSQL_ATTR_INIT_COMMAND    => "SET NAMES utf8",
+		PDO::ATTR_ERRMODE => "PDO::ERRMODE_EXCEPTION"
+	  );
  
 	  // Initialisation de la connection
-	  return new PDO( $dns, $utilisateur, $motDePasse );
+	  return new PDO( $dns, $utilisateur, $motDePasse, $options );
 	 // $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch ( Exception $e ) {
 	  echo "Connection � MySQL impossible : ", $e->getMessage();

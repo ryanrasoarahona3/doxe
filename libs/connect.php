@@ -7,6 +7,13 @@
 # define('PASS','fR6JM4X28CbewyATBF4JZjGX6h');
 
 #PROD
+
+// define('HOST','doxekdkcdb3003.mysql.db');
+// define('DBNAME','doxekdkcdb3003');
+// define('USER','doxekdkcdb3003');
+// define('PASS','Asxc023638');
+
+
 define('HOST','localhost:3306');
 define('DBNAME','doxekdkcdb3003');
 define('USER','root');
