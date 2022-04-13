@@ -28,6 +28,7 @@ $asso->conseilAdministration();
 			// Récupération première année
 			ksort($asso->conseil_administration);
 			$annee0 = key($asso->conseil_administration);
+			$total = (date('Y')) - $annee0 + 1;
 			
 			// Parcours les années depuis la première pour voir s'il y a des présidents
 			for ($i=date('Y'); $i>=$annee0; $i--) {
@@ -65,8 +66,8 @@ $asso->conseilAdministration();
 					<button type="button" form-action="associations" form-type="ca" form-id="'.$asso->id_association.'" class="right details action"></button>
 					</span></td></tr>';
 				}
-	if ($total > $j) {
-		$plus='<a href="#" class="right plus" form-action="associations" form-type="conseil_administration" form-id="'.$asso->id_association.'">> Voir '.($total-$limite).' plus</a>';
+	if ($j >= $limite) {
+		$plusCa='<a href="#" class="right plus" form-action="associations" form-type="conseil_administration" form-id="'.$asso->id_association.'">> Voir '.($total-$j).' plus</a>';
 	  }
 
 include_once($_SESSION['ROOT'].'/vues/contenus/associations/conseil_administration.php');

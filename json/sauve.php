@@ -454,6 +454,7 @@ if ($section == 'associations_amis') {
 		$commande->id_utilisateur = $_POST['id_association'];
 		$commande->type_utilisateur = 'A';
 		$commande->date_creation = $_POST['date_creation'];
+		// echo 'date création : ',$commande->date_creation;
 		$commande->payement = $_POST['payement'];
 		$commande->etat = $_POST['etat'];
 		$commande->reference = $_POST['reference'];

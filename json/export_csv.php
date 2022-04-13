@@ -287,4 +287,38 @@ if ($_SESSION['last']['recherche']['recherche'] == 'distinctions') {
         echo "Une erreur est survenue lors de la récupération des créateurs";
     }
 }
+
+// Associations
+if ($_SESSION['last']['recherche']['recherche'] == 'associations') {
+    try {
+        $select = $connect->query($_SESSION['last']['sql']);
+        $select->setFetchMode(PDO::FETCH_OBJ);
+        $i = 0;
+
+        while ($enregistrement = $select->fetch()) {
+
+            $noms = array();
+            $properties = get_object_vars($enregistrement);
+            $distinction = new distinction ($enregistrement->id);
+
+            // Nom des colonnes
+            if ($i == 0) {
+                foreach ($properties as $name => $value) {
+                    $noms[] = $name;
+                }
+
+                fputcsv($output, $noms, ";");
+            }
+
+            $data = get_object_vars($enregistrement);
+            fputcsv($output, $data, ";");
+            
+            $i++;
+        }
+
+    } catch (Exception $e) {
+        echo "Une erreur est survenue lors de la récupération des créateurs";
+    }
+}
+
 ?>

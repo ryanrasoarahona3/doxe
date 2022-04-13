@@ -49,7 +49,7 @@ if (isset ($laf)) {
 	$form->action = 'modifier';
 	$form->id_lien = $_GET['id_lien'];
 	
-	$menuConnaissance = getSelect('connaissance', array($laf->connaissance));
+	// $menuConnaissance = getSelect('connaissance', array($laf->connaissance));
 		
 	$menuAnnee = getAnnees('system',  'select', '', array($laf->annee));
 	

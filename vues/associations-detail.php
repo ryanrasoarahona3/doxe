@@ -49,7 +49,7 @@
 
 
 <div id="dialog-modal" title="<?php echo $modalTitre ?>" class="<?php echo $modalClasse ?>">
-	<p><?php echo $modalTexte ?></p>
+	<p><?php echo (isset($modalTexte) ? $modalTexte : '') ?></p>
 </div>
 
 <div id="dialog-modal-envoyer" class="modal">

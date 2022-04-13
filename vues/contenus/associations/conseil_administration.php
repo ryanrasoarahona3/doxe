@@ -4,7 +4,7 @@
 				
 				<?php if (!empty($ca)) : ?>
 				
-				<?php echo (isset($plus)?$plus:'') ?>
+				<?php echo (isset($plusCa)?$plusCa:'') ?>
 				<br class="clear">
 				<table>
 				  <thead>

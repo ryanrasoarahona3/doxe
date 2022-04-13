@@ -57,7 +57,7 @@ if (isset($_GET['plus'])){
 				
 				$amis .= '<div >';
 					$amis .= '<div class="titre '.$alerte.'">
-						<h3 class="left">'.$laf->annee.'</h3>		<h3 class="left">'.$commande->etat_libelle.'</h3>  <em>'.affDate(strtotime($commande->date_creation), true).'</em>';
+						<h3 class="left">'.$laf->annee.'</h3>		<h3 class="left">'.$commande->etat_libelle.'</h3>  <em>'.@affDate(strtotime($commande->date_creation), true).'</em>';
 						if ( isSiege() ) $amis .= '<button type="button" form-action="personnes" form-type="amis" form-id="'.$perso->id_personne.'" form-id-lien="'.$laf->id_laf.'" class="edit action right"></button>';
 					$amis .= '</div>';
 				

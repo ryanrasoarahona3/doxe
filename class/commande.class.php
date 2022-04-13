@@ -146,7 +146,7 @@ class Commande {
 		 $this->reqAjout->bindParam(':numero_commande', $this->numero_commande,PDO::PARAM_STR, 100);
 		 $this->reqAjout->bindParam(':id_utilisateur', $this->id_utilisateur, PDO::PARAM_INT, 11);
 		 $this->reqAjout->bindParam(':type_utilisateur', $this->type_utilisateur, PDO::PARAM_STR, 1);
-		 $this->reqAjout->bindParam(':date_creation', $this->date_creation_mysql, PDO::PARAM_INT, 11);
+		 $this->reqAjout->bindParam(':date_creation', $this->date_creation_mysql, PDO::PARAM_STR, 11);
 		 $this->reqAjout->bindParam(':payement', $this->payement, PDO::PARAM_INT, 2);
 		 $this->reqAjout->bindParam(':etat', $this->etat, PDO::PARAM_INT, 2);
 		 $this->reqAjout->bindParam(':numero_colis', $this->numero_colis, PDO::PARAM_STR, 255);

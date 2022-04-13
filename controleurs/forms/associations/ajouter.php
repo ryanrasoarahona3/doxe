@@ -21,6 +21,8 @@ else if (isGestion() && isset($_GET['id'])) $mode = 'gestion_modifier';
 else if (!isGestion() && !isset($assoc)) $mode = 'site_ajouter';
 else if (!isGestion() && isset($assoc)) $mode = 'site_modifier';
 
+echo "<script>console.log('".$mode."')</script>";
+
 // Inclusion dans le site
 if (!isGestion()) { 
 
