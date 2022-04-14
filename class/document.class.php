@@ -19,7 +19,7 @@ class Document
     public $association;
     public $commande;
     public $auth;
-    
+    public $emplacement;
      public $telecharge;
     
     public $data;
@@ -732,11 +732,14 @@ class Document
 			}
 			//$html2pdf->setModeDebug();
 			$html2pdf->WriteHTML($this->gabarit);
-			//$html2pdf->Output($this->filename.'.pdf', 'D');
+			// $html2pdf->Output($this->filename.'.pdf', 'D');
+			$this->emplacement = $this->path.$this->filename.'.pdf';
 			$html2pdf->Output($this->path.$this->filename.'.pdf', 'F'); // Enregistrement si besoin
 			
+			if ($this->telecharge) {
 			encode($this->filename,$this->path);
-			if ($this->telecharge) decode($this->filename,$this->path);
+			decode($this->filename,$this->path);
+			}
 			return true;
 			
     }

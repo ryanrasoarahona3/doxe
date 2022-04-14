@@ -687,9 +687,11 @@ jQuery(function($) {
         $.ajax({
             url: 'json/email.php',
             type: 'post',
-            dataType: 'json',
+            // dataType: 'json',
             data: $('#envoyer_email').serialize(),
             success: function(data) {
+                console.log("requete : " + this.url + $('#envoyer_email').serialize());
+                console.log("reponse : " + data);
                 if (data.etat == false) {
                     $("#dialog-modal-email  #retour").html('<span class="alerte">' + data.message + '</span>');
                 } else {
@@ -762,10 +764,11 @@ jQuery(function($) {
         $.ajax({
             url: 'json/email.php',
             type: 'post',
-            dataType: 'json',
+            // dataType: 'json',
             data: $('#envoyer_fichier_unique').serialize(),
             success: function(data) {
-
+                console.log("requete : " + this.url + $('#envoyer_fichier_unique').serialize());
+                console.log("reponse : " + data);
                 if (data.etat == false) {
                     $("#dialog-modal-envoyer-fichier  #retour").html('<span class="alerte">' + data.message + '</span>');
                 } else {

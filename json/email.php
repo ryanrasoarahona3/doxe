@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once($_SESSION['ROOT'].'libs/requires.php');
+require_once($_SESSION['ROOT'].'libs/rajout_mail.php');
 //session_destroy();
 
 // prevent direct access
@@ -11,11 +12,12 @@ if(!$isAjax) {
   trigger_error($user_error, E_USER_ERROR);
 }
  
-$action = $_POST['action'];
+$action = isset($_POST['action']) ? $_POST['action'] : 'email';
  
 // Envoyer email
-if ($action == "email") {
-	
+if ( $action == "email") {
+
+	$retour = envoyerUnMail($_POST['destinataire'], $_POST['sujet'], $_POST['message']);
 	
 }
 
@@ -107,7 +109,7 @@ if ($action == "fichier") {
 	
 	$type = explode('_',$_POST['type']);
 	
-	if ($type[0] =="personnes") {
+	if ($type[0] =="personnes" && $type[1] != "achat" && $type[1] != "amis") {
 		
 		// Recherche de l'association
 		if ($_POST['type'] == 'personnes_attestation') {
@@ -121,9 +123,9 @@ if ($action == "fichier") {
 			}
 		} 
 		// Amis, donc récupération de l'association
-		else if ($_POST['type'] == 'personnes_amis') {
-			$asso = new association (ID_LAF);
-		}
+		// else if ($_POST['type'] == 'personnes_amis') {
+		// 	$asso = new association (ID_LAF);
+		// }
 		
 		$asso->conseilAdministration();
 		$president = $asso->presidents[$detail[1]];
@@ -141,6 +143,8 @@ if ($action == "fichier") {
 			$erreur = true;
 			$message_erreur .= 'Courriel du président invalide.<br/>';
 		} else $destinataires[] = $president['courriel'];
+	} else if ($type[0] =="personnes" && ($type[1] == "achat" || $type[1] == "amis" )) {
+		envoyerUnMail($_POST['destinataire'], $_POST['sujet'], $_POST['message'], $_POST['fichier']);
 	}
 	
 	// Autre
@@ -164,7 +168,7 @@ if ($action == "fichier") {
 	}
 	
 	
-	
+	if ($type[0] =="personnes" && $type[1] =! "achat")
 	if (!$erreur) {
 
 		// Sélection des fichiers

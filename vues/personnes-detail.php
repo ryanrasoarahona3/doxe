@@ -78,7 +78,7 @@
       <?php endif; ?>
 
        Autre (saisir une ou plusieurs adresses séparées par des virgules)<br/>
-       <input type="text" name="destinataire">
+       <input id="input_email" value="<?php echo $perso->courriel; ?>" type="text" name="destinataire">
        </fieldset>
 
  		<br class="clear">
