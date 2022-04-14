@@ -145,7 +145,7 @@ class Document
         	case 'FAC': // Facture achat 
         	case 'DON': // Reçu fiscal DON
         		//FAC_id de la commande
-        		$this->commande     = $this->demande[1];
+        		$this->commande     = $this->demande[3];
         		$this->gabarit = file_get_contents($_SESSION['ROOT'].'../gestion/documents/'.$this->code.'.html');
         		$this->gabarit = str_replace('{url}',$_SESSION['ROOT'].'../gestion/',$this->gabarit);
         		$this->gabarit = str_replace('{nom}',$this->nom,$this->gabarit);
@@ -200,7 +200,7 @@ class Document
     	
     	if ($this->type == 'A') {
         	$laf = new laf_association ($this->laf); 
-        	$this->id_association = $laf->id_personne;
+        	$this->id_association = $laf->id_association; 
             $client = new association($this->id_association);
             $beneficiaire .= '<strong>'.$client->nom.'</strong><br>';
 			$beneficiaire .= ''.$client->adresse.'<br>';
@@ -230,20 +230,20 @@ class Document
 		$commande = new commande($laf->id_commande);
 		
 		// Recherche du produits
-		if(isset($commande->produits) && (is_array($commande->produits) || is_object($commande->produits)))
-		foreach ($commande->produits as $cle=>$prod) {
-			if (($this->type == 'A') && ($prod->id_source == ID_ADHESION_ASSOCIATION)) {
-				$adhesion = $prod;
-				break;
+		if((is_array($commande->produits) || is_object($commande->produits)))
+			foreach ($commande->produits as $cle=>$prod) {
+				if (($this->type == 'A') && ($prod->id_source == ID_ADHESION_ASSOCIATION)) {
+					$adhesion = $prod;
+					break;
+				}
+				
+				if (($this->type == 'P') && ($prod->id_source == ID_ADHESION_PERSONNE)) {
+					$adhesion = $prod;
+					break;
+				}
 			}
-			
-			if (($this->type == 'P') && ($prod->id_source == ID_ADHESION_PERSONNE)) {
-				$adhesion = $prod;
-				break;
-			}
-		}
 		
-		$num_adherent = $laf->annee.' / '.$client->id_personne;
+		$num_adherent = $laf->annee.' / '.($this->type=='P' ? $client->id_personne : $client->id_association);
 		if (!empty($client->courriel))  $num_adherent .= '<br><em>Courriel : '. $client->courriel.'</em>';
 		
 		
@@ -363,7 +363,9 @@ class Document
     // Reçu Don
     
     public function creation_DON() 
-    {
+    {	
+		// echo $this->commande;
+		// bonjour();
     	$commande = new commande ($this->commande);
 
     	if (empty($commande))  return false;
@@ -660,12 +662,12 @@ class Document
     public function creation_LET ()
     {
         // LETTRE
-        
+        $beneficiaire='';
         // Vérification de la légitimité de la demande
         
         if ($this->type == 'A') {
         	$laf = new laf_association ($this->laf); 
-        	$this->id_association = $laf->id_personne;
+        	$this->id_association = $laf->id_association;
             $client = new association($this->id_association);
             $beneficiaire .= '<strong style="color:#0e72b5;">'.$client->nom.'</strong><br>';
 			$beneficiaire .= '<div>'.$client->adresse.'<br>';
@@ -694,7 +696,7 @@ class Document
 
         }		
 
-		$num_adherent = $laf->annee.' / '.$client->id_personne;
+		$num_adherent = $laf->annee.' / '.($this->type=='A' ? $client->id_association : $client->id_personne);
 		if (!empty($client->courriel))  $num_adherent .= '<br><em>Courriel :<br> '. $client->courriel.'</em>';
 		
         // Remplissage	

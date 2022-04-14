@@ -15,19 +15,23 @@ if (isset($_GET['id'])) {
 
 
 $perso->commandes();
+// echo count($perso->commandes);
 $i=0;
 $bienfaiteur='';
-if(isset($perso->commandes) &&  $perso->commandes() != null && is_array($perso->commandes) )
+if(isset($perso->commandes) &&  $perso->commandes != null && is_array($perso->commandes) )
 foreach ($perso->commandes as $commande) {
 	
 	$detail_commande = new commande($commande->id_commande);
 	// echo count($detail_commande->produits);
 	// Cherche si l'achat contien un DON
 	$don = 0;
-	if($detail_commande != null && (is_array($detail_commande) || is_object($detail_commande) ))
+	if($detail_commande != null && (is_array($detail_commande->produits) || is_object($detail_commande->produits)))
 		foreach ($detail_commande->produits as $id_produit=>$produit) {
+
 				// echo $produit->nom,' ', $produit->id_source, ' ', ID_DON, ' ', $produit->prix, '<br>';
-				if ($produit->id_source == ID_DON) $don = $don + $produit->prix;
+				if ($produit->id_source == ID_DON) {
+					$don = $don + $produit->prix;
+				}
 				//print_r($detail_commande);
 		}	
 	

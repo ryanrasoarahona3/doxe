@@ -5,7 +5,7 @@ require_once($_SESSION['ROOT'].'libs/requires.php');
 $form = new stdClass;
 
 $form->section = 'personnes';
-$form->destination_validation = "json/sauve.php";
+$form->destination_validation = "json/sauve.php"; 
 
 //
 // Modes
@@ -190,6 +190,12 @@ $menuDelegueType .= '<option value="1" '.$select1.'>Régional</option>';
 $menuDelegueType .= '<option value="2" '.$select2.'>Départemental</option>';
 $menuDelegueType .= '<option value="3" '.$select3.'>Circonscription</option>';
 
+$selectAdjointOui = '';
+$selectAdjointNon = '';
+$selectHabiliteOui = '';
+$selectHabiliteNon = '';
+$selectSiegeHabiliteOui='';
+$selectSiegeHabiliteNon = '';
 if ($perso->delegue_adjoint == 1) $selectAdjointOui = ' checked ';
 if ($perso->delegue_adjoint == 0) $selectAdjointNon = ' checked ';
 

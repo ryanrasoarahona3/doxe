@@ -411,7 +411,6 @@ if ($section == 'personnes_amis') {
 		$laf->montant = $commande_produit->prix;
 	} 
 	
-	echo $laf->id_personne;
 
 	$retour['message'] = $laf->sauve();	
 	$retour['id'] = $_POST['id_personne'];

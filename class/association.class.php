@@ -613,7 +613,7 @@ WHERE id = :ville
     					$this->ville_label = $data_ville->nom;
     					$this->code_postal = $data_ville->code_postal;
     					
-    					return $retour;
+    					return @$retour;
     								
  					 } else print_r( $this->reqModifie->errorInfo());
   

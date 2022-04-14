@@ -108,7 +108,7 @@ if (isset($_GET['plus'])){
 	  }
   		
   	 
-  		
+	  $plus='';
 	  if ($total > $i) {
 		$plus='<a href="#" class="right plus" form-action="personnes" form-type="amis" form-id="'.$perso->id_personne.'">> Voir '.($total-$limite).' plus</a>';
 	  }

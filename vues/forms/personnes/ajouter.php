@@ -3,7 +3,7 @@
 
 	<form id="ajouter_personnes">
 		<article class="personnes etape" id="infos_generales">
-		<h2><span class="icon-personnes"></span> Informations générales</h2><br class="clear">
+		<h2><span class="icon-personnes"></span> Informations générales</h2><br class="clear"> 
 			<div>
 				
 				<!---->
@@ -227,7 +227,7 @@
 				
 				<fieldset class="col1">
 				<label for="siege">Accès siège</label>
-				<?php echo $commentaires['siege'] ?>
+				<?php echo @$commentaires['siege'] ?>
 				<select type="text" name="siege"  value="" id="siege" >
 					<option value="0">Aucun</option>
 					<?php echo $menuSiege ?>
@@ -236,7 +236,7 @@
 				
 				<fieldset class="col1 habilite">
 				<label for="delegue_habilite" class="clear_right">Siège habilité</label>
-				<?php echo $commentaires['siege_habilite'] ?>
+				<?php echo @$commentaires['siege_habilite'] ?>
 				<input type="radio" name="siege_habilite"  value="1" id="siege_habilite"  <?php echo $selectSiegeHabiliteOui ?>/> Oui     		
 				<input type="radio" name="siege_habilite"  value="0" id="siege_habilite"  <?php echo $selectSiegeHabiliteNon ?>/> Non
 				</fieldset>
@@ -244,7 +244,7 @@
 				
 				<fieldset class="col1">
 				<label for="delegue_statut">Statut</label>
-				<?php echo $commentaires['delegue_statut'] ?>
+				<?php echo @$commentaires['delegue_statut'] ?>
 				<select type="text" name="delegue_statut"  value="" id="delegue_statut" >
 					<?php echo $menuDelegueStatut ?>
 				</select>
@@ -254,7 +254,7 @@
 				
 				<fieldset class="col1 responsabilite">
 				<label for="delegue_type">Type responsabilité</label>
-				<?php echo $commentaires['delegue_type'] ?>
+				<?php echo @$commentaires['delegue_type'] ?>
 				<select type="text" name="delegue_type"  value="" id="delegue_type" >
 					<?php echo $menuDelegueType ?>
 				</select>
@@ -263,7 +263,7 @@
 				
 				<fieldset class="col1 adjoint">
 				<label for="delegue_adjoint" class="clear_right">Adjoint</label>
-				<?php echo $commentaires['delegue_adjoint'] ?>
+				<?php echo @$commentaires['delegue_adjoint'] ?>
 				<input type="radio" name="delegue_adjoint"  value="1" id="delegue_adjoint" <?php echo $selectAdjointOui ?>/> Oui     		
 				<input type="radio" name="delegue_adjoint"  value="0" id="delegue_adjoint" <?php echo $selectAdjointNon ?>/> Non
 				</fieldset>
@@ -271,7 +271,7 @@
 				
 				<fieldset class="col1 habilite">
 				<label for="delegue_habilite" class="clear_right">Habilité</label>
-				<?php echo $commentaires['delegue_habilite'] ?>
+				<?php echo @$commentaires['delegue_habilite'] ?>
 				<input type="radio" name="delegue_habilite"  value="1" id="delegue_habilite"  <?php echo $selectHabiliteOui ?>/> Oui     		
 				<input type="radio" name="delegue_habilite"  value="0" id="delegue_habilite"  <?php echo $selectHabiliteNon ?>/> Non
 				</fieldset>

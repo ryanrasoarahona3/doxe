@@ -68,6 +68,7 @@
 					<option value="">Choisissez</option>
 					<?php echo $Activites ?>
 				</select>
+				
 				</fieldset>
 		
 		

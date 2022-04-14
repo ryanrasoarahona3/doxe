@@ -10,7 +10,7 @@ class laf_association {
 	private $connection;
 		
 	// SQL
-	public $reqModifie; 
+	public $reqModifie;
 	public $reqAjout; 
 	public $reqCharge; 
 	public $reqAssociations; 

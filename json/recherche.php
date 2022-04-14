@@ -784,38 +784,38 @@ if ($recherche == 'associations') {
 					$sqlComplement[] = ' laf.etat_paiement <> "success" ';		
 			
 		
-			if ($_GET['gmf'] < 2)
+			if (isset($_GET['gmf']) && $_GET['gmf'] < 2)
 				$sqlComplement[] = ' laf.assurance_gmf = "'.$_GET['gmf'].'" ';		
 			
 		
-			if ($_GET['depasse_gmf'] < 2) {			
+			if (isset($_GET['depasse_gmf']) && $_GET['depasse_gmf'] < 2) {			
 					if ($_GET['depasse_gmf'] == 1) {
-						$sqlComplement[] = ' laf.budget_fonctionnement  > '.MAX_BUDGET_GMF.' ';	
+						// $sqlComplement[] = ' laf.budget_fonctionnement  > '.MAX_BUDGET_GMF.' ';	
 						$sqlComplement[] = ' laf.nbr_adherents  > '.MAX_ADHERENTS_GMF.' ';	
 						$sqlComplement[] = ' laf.nbr_salaries  > '.MAX_SALARIES_GMF.' ';	
 					}	else if ($_GET['depasse_gmf'] == 0) {
-						$sqlComplement[] = ' laf.budget_fonctionnement  <= '.MAX_BUDGET_GMF.' ';	
+						 $sqlComplement[] = ' laf.budget_fonctionnement  <= MAX_BUDGET_GMF ';	
 						$sqlComplement[] = ' laf.nbr_adherents  <= '.MAX_ADHERENTS_GMF.' ';	
 						$sqlComplement[] = ' laf.nbr_salaries  <= '.MAX_SALARIES_GMF.' ';	
 					}	
 			}
 		
-			if ($_GET['citizenplace'] < 2) 
+			if (isset($_GET['citizenplace']) && $_GET['citizenplace'] < 2) 
 					$sqlComplement[] = ' laf.logiciel_citizenplace = "'.$_GET['logiciel_citizenplace'].'" ';		
 			
 		
-			if ($_GET['aide_citizenplace'] < 2) 
+			if (isset($_GET['aide_citizenplace']) && $_GET['aide_citizenplace'] < 2) 
 					$sqlComplement[] = ' laf.aide_citizenplace = "'.$_GET['aide_citizenplace'].'" ';		
 			
 		
-			if ($_GET['groupama'] < 2) 
+			if (isset($_GET['groupama']) && $_GET['groupama'] < 2) 
 					$sqlComplement[] = ' laf.assurance_groupama = "'.$_GET['groupama'].'" ';		
 			
 		
-			if ($_GET['banque_postale'] < 2) 
+			if (isset($_GET['banque_postale']) && $_GET['banque_postale'] < 2) 
 					$sqlComplement[] = ' laf.acces_info_banque_postale = "'.$_GET['banque_postale'].'" ';		
 				
-			if ($_GET['banque_postale'] < 2) 
+			if (isset($_GET['banque_postale']) && $_GET['banque_postale'] < 2) 
 					$sqlComplement[] = ' laf.acces_info_banque_postale = "'.$_GET['banque_postale'].'" ';				
 		} 
 					
@@ -825,7 +825,7 @@ if ($recherche == 'associations') {
 			$sqlFrom[] = ' INNER JOIN laf_adhesions_associations AS laf ON associations.id = laf.association ';
 		}
 		
-		if ($_GET['nouvel_adherent'] >0) {
+		if (isset($_GET['nouvel_adherent']) && $_GET['nouvel_adherent'] >0) {
 			$sqlComplement[] = ' '.$_GET['nouvel_adherent'].' = (select annee from laf_adhesions_personnes where laf_adhesions_personnes.personne = laf.personne ORDER BY laf_adhesions_personnes.annee asc limit 1) ';
 			$sqlFrom[] = ' INNER JOIN laf_adhesions_associations AS laf ON associations.id = laf.association ';
 		}
@@ -1064,13 +1064,13 @@ if ($recherche == 'personnes') {
 			$sqlFrom[] = ' INNER JOIN laf_adhesions_personnes AS laf ON personnes.id = laf.personne ';
 			
 			
-			if ($_GET['adherent_annees'] > 2014 ) {
+			if (@$_GET['adherent_annees'] > 2014 ) {
 				$sqlFrom[] = ' INNER JOIN `commerce_commandes` AS commande ON commande.id = laf.id_commande  ';
 			
 				if ($_GET['etat_paiement']>0) $sqlComplement[] = ' commande.etat = "'.$_GET['etat_paiement'].'" ';	
 			}
 			
-				$sqlComplement[] = ' laf.annee = "'.$_GET['adherent_annees'].'" ';
+				$sqlComplement[] = ' laf.annee = "'.@$_GET['adherent_annees'].'" ';
 				$sqlChamps[] = ' laf.annee AS annee, ';
 			/*
 			// NE MARCHE PAS
@@ -1094,10 +1094,10 @@ if ($recherche == 'personnes') {
 			else if ( (empty($_GET['date_paiement_debut'])) && (!empty($_GET['date_paiement_fin']))) 
 				$sqlComplement[] = ' commande.date_creation <= \''.convertDate($_GET['date_paiement_fin']).' 23:59:59\'  ';	
 	
-			if ($_GET['origine_adhesion'] >0) 
+			if (@$_GET['origine_adhesion'] >0) 
 				$sqlComplement[] = ' laf.connaissance = "'.$_GET['origine_adhesion'].'" ';
 				
-			if ($_GET['nouvel_adherent'] >0) 
+			if (@$_GET['nouvel_adherent'] >0) 
 				$sqlComplement[] = ' '.$_GET['nouvel_adherent'].' = (select annee from laf_adhesions_personnes where laf_adhesions_personnes.personne = laf.personne ORDER BY laf_adhesions_personnes.annee asc limit 1) ';
 			
 		}
