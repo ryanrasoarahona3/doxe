@@ -522,7 +522,7 @@ class Distinction
         
         if(!empty($this->activites)) {
           foreach ($this->activites as $val) {
-            echo "this->activites : " . $val;
+            // echo "this->activites : " . $val;
             try {
                 if (!empty($val['fonction_autre'])) $val['fonction']=35;
 
@@ -545,7 +545,7 @@ class Distinction
         }
         if(!empty($this->activites_passees)) {
 			foreach ($this->activites_passees as $val) {
-                echo "this->activites_passees : " . $val['association'];
+                // echo "this->activites_passees : " . $val['association'];
 				try {
 					if (!empty($val['fonction_autre'])) $val['fonction']=35;
 					

@@ -46,7 +46,7 @@ function envoyerUnMail($destinataires, $sujet, $corps, $fichier = null)
                 // $document->telecharge();
                 $document->creation();
                 // echo $document->emplacement;
-                $mail->addAttachment($document->emplacement, $document->filename);
+                $mail->addAttachment($document->emplacement, $document->filename.".pdf");
             }
         }
 
@@ -58,10 +58,13 @@ function envoyerUnMail($destinataires, $sujet, $corps, $fichier = null)
         }
 
         if (!$mail->send()) {
-            return $mail->ErrorInfo;
+            return '{"message": "'.$mail->ErrorInfo.'", "etat": "false"}';
         } else {
-            return "message envoyé";
+            return json_encode(array(
+                "etat"=>true,
+                "message"=>"Votre message a bien été envoyé."
+            ));
         }
     }
-    return "informations manquantes";
+    return '{"etat": "false"}';
 }
