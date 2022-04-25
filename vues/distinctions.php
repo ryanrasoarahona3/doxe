@@ -156,7 +156,7 @@
 		</table>
 		</div>
 
-	</div>
+	</div>	  <!-- copyright -->     <p>&nbsp;</p>	    <p style="text-align: center;">      Copyright        © 2015 - 2022 - Le Cercle        National des Bénévoles&nbsp; |        Infogérance <a href="www.assikko.fr"          title="Lien vers le site d'Assiskko">Assiskko.fr</a><br>        Oni2-FRCF </p>    <!-- copyright -->
 </div>
 </section>
 

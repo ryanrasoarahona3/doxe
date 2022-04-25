@@ -20,7 +20,7 @@ if (isset($_GET['plus'])){
 		$perso->lesAmis();
 	
 		$total = (isset($perso->lesamis) && is_countable($perso->lesamis) ? count($perso->lesamis) : 0);
-		echo $total;
+		// echo $total;
 		$i=0;
 		$amis = '';
 
@@ -74,8 +74,8 @@ if (isset($_GET['plus'])){
 										<button type="button" form-action="telecharger" form-element="'.$recu.'"  class="action telecharger " title="Télécharger le reçu"></button>
 										<button form-action="envoyer_fichier" form-element="'.$recu.'" form-type="personnes_amis" class=" envoyer_fichier action" title="Envoyer le reçu"></button>
 										</p>
-									</div>
-									<div class="left detail_laf ">
+									</div>'
+									.'<div class="left detail_laf ">
 										<p><span class="zone_carte id_'.$laf->id_laf.'">Carte '.$carteOK.'</span>
 										<button type="button" form-action="telecharger" 
 										form-id-laf="'.$laf->id_laf.'" form-element="CAR_P_'.$laf->id_laf.'"  class="action telecharger '. $carteClass . '" 
@@ -86,7 +86,8 @@ if (isset($_GET['plus'])){
 										<p>Lettre
 										<button type="button" form-action="telecharger" form-element="LET_P_'.$laf->id_laf.'"  class="action telecharger " title="Imprimer la Lettre"></button>
 										</p>
-									</div>';
+									</div>'
+									;
 						} else if ($laf->annee < 2015){
 							$amis .= '<div class="left detail_laf">Les documents relatifs à l\'adhésion aux <strong>Amis de la Fondation '.$laf->annee.'</strong> ne sont pas gérés.</div>';
 						}

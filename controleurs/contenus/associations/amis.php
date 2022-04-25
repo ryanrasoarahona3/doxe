@@ -76,20 +76,21 @@ if (isset($_GET['plus'])){
 										<button type="button" form-action="telecharger" form-element="'.$recu.'"  class="action telecharger " title="Télécharger le reçu"></button>
 										<button form-action="envoyer_fichier" form-element="'.$recu.'" form-type="associations_amis" class=" envoyer_fichier action" title="Envoyer le reçu"></button>
 										</p>
-									</div>
-									<div class="left detail_laf">
-										<p>Carte
+									</div>'
+									// .'<div class="left detail_laf">
+									// 	<p>Carte
 						
-										<button type="button" form-action="telecharger" form-element="CAR_A_'.$laf->id_laf.'"  class="action telecharger " title="Imprimer la carte"></button>
-										</p>
-									</div>
+									// 	<button type="button" form-action="telecharger" form-element="CAR_A_'.$laf->id_laf.'"  class="action telecharger " title="Imprimer la carte"></button>
+									// 	</p>
+									// </div>
 									
-									<div class="left detail_laf">
-										<p>Lettre
+									// <div class="left detail_laf">
+									// 	<p>Lettre
 						
-										<button type="button" form-action="telecharger" form-element="LET_A_'.$laf->id_laf.'"  class="action telecharger " title="Imprimer la Lettre"></button>
-										</p>
-									</div>';
+									// 	<button type="button" form-action="telecharger" form-element="LET_A_'.$laf->id_laf.'"  class="action telecharger " title="Imprimer la Lettre"></button>
+									// 	</p>
+									// </div>'
+									;
 						} else if ($laf->annee < 2015){
 							$amis .= '<div class="left detail_laf">Les documents relatifs à l\'adhésion aux <strong>Amis de la Fondation</strong> ne sont pas gérés.</div>';
 						}

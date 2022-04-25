@@ -1,5 +1,8 @@
 <?php
 
+$documents = '';
+$config = '';
+
 // Récupération documents
 $req = "SELECT * FROM documents_contenus ";
 try {

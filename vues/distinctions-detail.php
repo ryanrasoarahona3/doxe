@@ -39,18 +39,7 @@
 	
 			
 			
-			<!--
-			<article id="distinctions_activitesencours">
-			<h2>Activités en cours</h2>
-				<div>
-					<table>
-					<thead><tr><th>Association</th><th>Fonction</th><th>Année de début</th><th>Nombre d'années</th></tr></thead>
-					<?php echo $distinction->affActivites() ?>
-					</table>
-					
-				</div>
-			</article>
-			-->
+			
 			<article id="distinctions_activitespassees">
 				<h2>Activités </h2>
 				<div>
@@ -105,10 +94,10 @@
 </section>
 
 <div id="dialog-modal" title="<?php echo $modalTitre ?>" class="<?php echo $modalClasse ?>">
-	<p><?php echo $modalTexte ?></p>
+	<p><?php echo (isset($modalTexte) ? $modalTexte : ''); ?></p>
 </div>
 
-<?php if ($modal) : ?>
+<?php if (isset($modal) && $modal) : ?>
 <script>
 	jQuery(function($) {
 		$( "#dialog-modal" ).dialog({

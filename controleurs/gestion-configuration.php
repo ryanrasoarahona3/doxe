@@ -9,7 +9,11 @@ $form->destination_validation = "json/sauve.php";
 $form->action = 'gestion';
 $form->label_validation = "Modifier";
 
-$configuration = new document($element);
+// $configuration = new document($element);
+// $document = $configuration;
+
+$configuration = new Configuration($element);
+echo $configuration -> getBalisesFromContenu();
 
 include_once(ROOT.'/vues/'.$controlleur.'.php');
 ?>

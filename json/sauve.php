@@ -414,7 +414,7 @@ if ($section == 'personnes_amis') {
 
 	$retour['message'] = $laf->sauve();	
 	$retour['id'] = $_POST['id_personne'];
-	
+	$retour['section']='personnes';
 }
 
 //////////////////////////////////////
@@ -646,6 +646,21 @@ if ($section == 'bienfaiteur')  {
 	$retour['section']= 'personnes';
 	//$retour['action'] = 'gestion';
 	$retour['id'] = $_POST['bienfaiteur'];
+}
+
+if($section == 'configuration') {
+	$nom = $_POST['nom'];
+	$contenu = $_POST['contenus'];
+	$code = $_POST['code'];
+
+	$configuration = new Configuration($code);
+	$configuration->nom = $nom;
+	$configuration->contenu = $contenu;
+	
+	$saved = $configuration->save();
+
+	if ($saved)	$retour['message'] = 'enregistrement réussi';
+	else $retour['message'] = 'enregistrement échoué';
 }
 
 

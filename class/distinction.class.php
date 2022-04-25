@@ -522,7 +522,7 @@ class Distinction
         
         if(!empty($this->activites)) {
           foreach ($this->activites as $val) {
-            echo "this->activites : " . $val;
+            // echo "this->activites : " . $val;
             try {
                 if (!empty($val['fonction_autre'])) $val['fonction']=35;
 
@@ -545,7 +545,7 @@ class Distinction
         }
         if(!empty($this->activites_passees)) {
 			foreach ($this->activites_passees as $val) {
-                echo "this->activites_passees : " . $val['association'];
+                // echo "this->activites_passees : " . $val['association'];
 				try {
 					if (!empty($val['fonction_autre'])) $val['fonction']=35;
 					
@@ -640,20 +640,25 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->activites_passees) > 0) {
+        if (is_countable($this->activites_passees) && count($this->activites_passees) > 0) {
             foreach ($this->activites_passees as $cle => $val) {
-            	if (!empty ($val['annee_fin']) ) {
+                if((!isset($val['annee_debut']) || empty($val['annee_debut'])) && (!isset($val['annee_fin']) || empty($val['annee_fin'])) && (!isset($val['association']) || empty($val['association']))) {
+                    continue;
+                }
+            	if (!empty ($val['annee_fin']) && intval($val['annee_fin']) > 0 && isset($val['annee_debut']) && !empty($val['annee_debut'])) {
             		$annee = ($val['annee_fin'] - $val['annee_debut']);
             		$an_fin =  $val['annee_fin'];
             	}
-            	else {
-            		$annee = ( date(Y) - $val['annee_debut']);
+            	else if(isset($val['annee_debut']) && !empty($val['annee_debut']) && intval(['annee_debut']) > 0) {
+            		$annee = ( date('Y') - $val['annee_debut']);
 					$an_fin = '<em>En cours</em>';
-            	}
-            	
+            	} else {
+                    $annee = 'non défini';
+                    $an_fin= "non défini";
+                }
             	if (!empty( $val['fonction_autre'] )) $fonction = $val['fonction_autre'];
-            	else $fonction = $val['fonction_label'];
-                $aff .= '<tr><td>' . $val['association'] . '</td><td>' . $fonction . '</td><td>' . $val['annee_debut'] . '</td><td>' .$an_fin . '</td><td>' . $annee . '</td></tr>';
+            	else $fonction = (isset($val['fonction_label']) && !empty($val['fonction_label']) ? $val['fonction_label'] : 'non définie');
+                $aff .= '<tr><td>' . (isset($val['association']) && !empty($val['association']) ? $val['association'] : 'non défini' ) . '</td><td>' . $fonction . '</td><td>' . (isset($val['annee_debut']) && !empty($val['annee_debut']) ? $val['annee_debut'] : 'non défini') . '</td><td>' .$an_fin . '</td><td>' . $annee . '</td></tr>';
             }
         }
         
@@ -667,7 +672,7 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->activites) > 0) {
+        if (is_countable($this->activites) && count($this->activites) > 0) {
             foreach ($this->activites as $cle => $val) {
             	if (!empty( $val['fonction_autre'] )) $fonction = $val['fonction_autre'];
             	else $fonction = $val['fonction_label'];
@@ -702,7 +707,7 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->distinctions) > 0) {
+        if (is_countable($this->distinctions) && count($this->distinctions) > 0) {
             foreach ($this->distinctions as $cle => $val) {
                 $aff .= '<tr><td>' . $val['distinction_passee'] . '</td><td>' . $val['annee'] . '</td></tr>';
             }
@@ -716,7 +721,7 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->documents) > 0) {
+        if (is_countable($this->documents) && count($this->documents) > 0) {
             foreach ($this->documents as $cle => $val) {
                 $parrain = new personne($val);
                 $aff .= '<tr>';
@@ -742,7 +747,7 @@ class Distinction
         
         $aff = '';
         
-        if (count($this->parrains) > 0) {
+        if (is_countable($this->parrains) && count($this->parrains) > 0) {
             foreach ($this->parrains as $cle => $val) {
                 $parrain = new personne($val);
                 $aff .= '<tr>';
@@ -803,7 +808,7 @@ class Distinction
         }
         
         $aff = '<h3 class="' . $alerte . '">' . $distinctionLabel . ' ' . $this->annee . '</h3>';
-        $aff .= $demande.'<bR>';
+        $aff .= (isset($demande) ? $demande : '').'<bR>';
         $aff .= '<h3 >Avis du délégué : '.$this->distinction_avis_label.'</h3>';
          
       

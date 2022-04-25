@@ -1,0 +1,15 @@
+[16-Apr-2022 14:17:54 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:17:54 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:17:57 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:17:57 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:17:58 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:17:58 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 14:18:00 UTC] PHP Warning:  Undefined property: stdClass::$id in /home/sc2tutu1197/public_html/5-1-base/gestion/json/autocomplete.php on line 35
+[16-Apr-2022 16:33:51 UTC] PHP Warning:  Undefined array key 3 in /home/sc2tutu1197/public_html/5-1-base/gestion/class/document.class.php on line 148
+[16-Apr-2022 16:33:52 UTC] PHP Warning:  Undefined array key 3 in /home/sc2tutu1197/public_html/5-1-base/gestion/class/document.class.php on line 148
+[16-Apr-2022 16:50:24 UTC] PHP Warning:  require_once(/home/sc2tutu1197/public_html/5-1-base/gestion/../gestion/libs/rajout_mail.php): Failed to open stream: No such file or directory in /home/sc2tutu1197/public_html/5-1-base/gestion/json/email.php on line 4
+[16-Apr-2022 16:50:24 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/sc2tutu1197/public_html/5-1-base/gestion/../gestion/libs/rajout_mail.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/sc2tutu1197/public_html/5-1-base/gestion/json/email.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/sc2tutu1197/public_html/5-1-base/gestion/json/email.php on line 4
+[16-Apr-2022 17:00:26 UTC] PHP Warning:  Undefined array key 3 in /home/sc2tutu1197/public_html/5-1-base/gestion/class/document.class.php on line 148

@@ -689,12 +689,15 @@ jQuery(function($) {
             type: 'post',
             dataType: 'json',
             data: $('#envoyer_email').serialize(),
-            success: function(data) {
-                if (data.etat == false) {
-                    $("#dialog-modal-email  #retour").html('<span class="alerte">' + data.message + '</span>');
+            success: function(reponse) {
+                // console.log("requete : " + this.url + $('#envoyer_email').serialize());
+                //  console.log("reponse : " + reponse);
+                let reponse_data = JSON.parse(reponse);
+                if (reponse_data['etat'] == false) {
+                    $("#dialog-modal-email  #retour").html('<span class="alerte">' + reponse_data['message'] + '</span>');
                 } else {
                     $(".ui-dialog-buttonpane button:contains('Envoyer')").hide();
-                    $("#dialog-modal-email  #retour").html('<span class="alerte">' + data.message + '</span>');
+                    $("#dialog-modal-email  #retour").html('<span class="alerte">' + reponse_data['message'] + '</span>');
                     $("#dialog-modal-email form").hide();
                 }
 
@@ -764,13 +767,15 @@ jQuery(function($) {
             type: 'post',
             dataType: 'json',
             data: $('#envoyer_fichier_unique').serialize(),
-            success: function(data) {
-
-                if (data.etat == false) {
-                    $("#dialog-modal-envoyer-fichier  #retour").html('<span class="alerte">' + data.message + '</span>');
+            success: function(reponse) {
+                // console.log("requete : " + this.url + $('#envoyer_fichier_unique').serialize());
+                // console.log("reponse : " + reponse);
+                let response_data=JSON.parse(reponse);
+                if (response_data['etat'] == false) {
+                    $("#dialog-modal-envoyer-fichier  #retour").html('<span class="alerte">' + response_data['message'] + '</span>');
                 } else {
                     $(".ui-dialog-buttonpane button:contains('Envoyer')").hide();
-                    $("#dialog-modal-envoyer-fichier  #retour").html('<span class="alerte">' + data.message + '</span>');
+                    $("#dialog-modal-envoyer-fichier  #retour").html('<span class="alerte">' + response_data['message'] + '</span>');
                     $("#dialog-modal-envoyer-fichier form").hide();
                 }
 
@@ -826,11 +831,11 @@ jQuery(function($) {
         $.ajax({
             url: gestion + $('#destination_validation').val(),
             type: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
-                console.log('requete : ' +this.url + $('#' + form).serialize());
-                console.log('reponse : ' + data);
+                // console.log('requete : ' +this.url + $('#' + form).serialize());
+                // console.log('reponse : ' + data);
                 $("#contenu_formulaire").off("click", "#action_pre_valider");
                 $("#contenu_formulaire").empty().off("*");
                 $("#dialog-modal-enregistrement").enregistre('ferme');

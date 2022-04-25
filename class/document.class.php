@@ -19,7 +19,7 @@ class Document
     public $association;
     public $commande;
     public $auth;
-    
+    public $emplacement;
      public $telecharge;
     
     public $data;
@@ -145,7 +145,8 @@ class Document
         	case 'FAC': // Facture achat 
         	case 'DON': // Reçu fiscal DON
         		//FAC_id de la commande
-        		$this->commande     = $this->demande[3];
+				if(is_countable($this->demande))
+        			$this->commande     = $this->demande[count($this->demande) - 1];
         		$this->gabarit = file_get_contents($_SESSION['ROOT'].'../gestion/documents/'.$this->code.'.html');
         		$this->gabarit = str_replace('{url}',$_SESSION['ROOT'].'../gestion/',$this->gabarit);
         		$this->gabarit = str_replace('{nom}',$this->nom,$this->gabarit);
@@ -157,8 +158,8 @@ class Document
         		//CNB_type_id adhésion
         		//CAR_type_id_adhésion
         		//LET_type_id_adhésion
-        		$this->type = $this->demande[1];
-        		$this->laf = $this->demande[2];
+        		$this->type = @$this->demande[1];
+        		$this->laf = @$this->demande[2];
         		 
         		$this->gabarit = file_get_contents($_SESSION['ROOT'].'../gestion/documents/'.$this->code.'.html');
         		$this->gabarit = str_replace('{url}',$_SESSION['ROOT'].'../gestion/',$this->gabarit);
@@ -602,7 +603,7 @@ class Document
     public function creation_CAR()
     {
         // CARTE DE MEMBRE
-        
+        $beneficiaire = "";
         // Vérification de la légitimité de la demande
         
         if ($this->type == 'A') {
@@ -732,11 +733,14 @@ class Document
 			}
 			//$html2pdf->setModeDebug();
 			$html2pdf->WriteHTML($this->gabarit);
-			//$html2pdf->Output($this->filename.'.pdf', 'D');
+			// $html2pdf->Output($this->filename.'.pdf', 'D');
+			$this->emplacement = $this->path.$this->filename.'.pdf';
 			$html2pdf->Output($this->path.$this->filename.'.pdf', 'F'); // Enregistrement si besoin
 			
+			if ($this->telecharge) {
 			encode($this->filename,$this->path);
-			if ($this->telecharge) decode($this->filename,$this->path);
+			decode($this->filename,$this->path);
+			}
 			return true;
 			
     }

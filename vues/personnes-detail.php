@@ -54,7 +54,7 @@
 </section>
 
 <div id="dialog-modal" title="<?php echo $modalTitre ?>" class="<?php echo $modalClasse ?>">
-	<p><?php echo $modalTexte ?></p>
+	<p><?php echo (isset($modalTexte) ? $modalTexte : '') ?></p>
 </div>
 
 <div id="dialog-modal-envoyer-fichier" class="modal">
@@ -78,7 +78,7 @@
       <?php endif; ?>
 
        Autre (saisir une ou plusieurs adresses séparées par des virgules)<br/>
-       <input type="text" name="destinataire">
+       <input id="input_email" value="<?php echo $perso->courriel; ?>" type="text" name="destinataire">
        </fieldset>
 
  		<br class="clear">

@@ -1,0 +1,58 @@
+[15-Apr-2022 08:42:35 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 09:01:19 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 13:40:51 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 13:41:14 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 13:41:38 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 13:41:38 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 13:48:41 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 13:48:41 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 15:20:26 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 15:20:26 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 15:20:57 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 15:20:57 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 16:12:10 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 16:12:10 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 16:12:55 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 16:12:55 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[15-Apr-2022 16:13:22 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[15-Apr-2022 16:13:22 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[16-Apr-2022 14:30:27 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[16-Apr-2022 14:30:27 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[16-Apr-2022 14:30:27 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[16-Apr-2022 14:30:27 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Undefined variable $laf in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 31
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Attempt to read property "paiement" on null in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 31
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Undefined variable $laf in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 32
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Attempt to read property "paiement" on null in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 32
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Undefined variable $laf in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 41
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Attempt to read property "montant" on null in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 41
+[16-Apr-2022 16:33:08 UTC] PHP Warning:  Undefined property: stdClass::$id_lien in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/amis.php on line 173
+[16-Apr-2022 16:56:34 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[16-Apr-2022 16:56:34 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[16-Apr-2022 16:56:34 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[16-Apr-2022 16:56:34 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[16-Apr-2022 17:01:34 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[16-Apr-2022 17:01:34 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[17-Apr-2022 13:30:33 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[17-Apr-2022 21:06:41 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[17-Apr-2022 21:06:57 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[17-Apr-2022 21:07:41 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[17-Apr-2022 21:08:58 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237
+[18-Apr-2022 04:42:35 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[18-Apr-2022 04:42:35 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[18-Apr-2022 04:42:35 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[18-Apr-2022 04:42:35 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[18-Apr-2022 06:54:39 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[18-Apr-2022 06:54:39 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[18-Apr-2022 06:54:39 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[18-Apr-2022 06:54:39 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[18-Apr-2022 07:15:44 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[18-Apr-2022 07:15:44 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[18-Apr-2022 07:15:44 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[18-Apr-2022 07:15:44 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[18-Apr-2022 07:17:32 UTC] PHP Warning:  Undefined array key "association_type" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 44
+[18-Apr-2022 07:17:32 UTC] PHP Warning:  Undefined array key "numero_adherent" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 45
+[18-Apr-2022 07:17:32 UTC] PHP Warning:  Undefined array key "association_special_select" in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 211
+[18-Apr-2022 07:17:32 UTC] PHP Warning:  Undefined variable $delegueSpecial in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/ajouter.php on line 214
+[18-Apr-2022 07:39:38 UTC] PHP Warning:  Undefined variable $menuValidation in /home/sc2tutu1197/public_html/5-1-base/gestion/vues/forms/personnes/distinctions.php on line 469
+[18-Apr-2022 07:39:38 UTC] PHP Warning:  Undefined variable $affDataActivites in /home/sc2tutu1197/public_html/5-1-base/gestion/controleurs/forms/personnes/distinctions.php on line 237

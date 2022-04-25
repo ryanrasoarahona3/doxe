@@ -11,6 +11,8 @@ $form->label_validation = "Modifier";
 
 $document = new document($element);
 
+// echo "element : ", $element;
+
 include_once(ROOT.'/vues/'.$controlleur.'.php');
 ?>
 <script>
