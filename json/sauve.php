@@ -326,6 +326,18 @@ if ($section == 'distinctions') {
 		if(property_exists('distinction', $cle)) {
 			if (!is_array($val) )  $val = trim($val);
 			$distinction->{$cle} = $val;
+			
+			//temp
+			if ($cle = 'activites_passees') {
+				foreach($val as $activite) {
+					foreach($activite as $key=>$value) {
+						echo $key,': ',$value, '<br>';
+					}
+					echo '<br>';
+				}
+				echo '<br><br>';
+			}
+			//
 		}			
 	}	
 	$distinction->domaines = (isset($_POST['domaines']) ? $_POST['domaines'] : '');
