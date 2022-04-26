@@ -33,7 +33,7 @@ jQuery(function($) {
         // Récupère le modèle du tableau
         $('#zone_tableau').html($('#modele_tableau').html());
 
-        history.pushState({}, '', 'http://' + window.location.hostname + window.location.pathname);
+        history.pushState({}, '', 'https://' + window.location.hostname + window.location.pathname);
 
         // Calcul du nombre de résultats
         $.ajax({
@@ -831,11 +831,11 @@ jQuery(function($) {
         $.ajax({
             url: gestion + $('#destination_validation').val(),
             type: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             data: $('#' + form).serialize(),
             success: function(data) {
-                console.log('requete : ' +this.url + $('#' + form).serialize());
-                console.log('reponse : ' + data);
+                // console.log('requete : ' +this.url + $('#' + form).serialize());
+                // console.log('reponse : ' + data);
                 $("#contenu_formulaire").off("click", "#action_pre_valider");
                 $("#contenu_formulaire").empty().off("*");
                 $("#dialog-modal-enregistrement").enregistre('ferme');

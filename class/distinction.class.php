@@ -555,7 +555,7 @@ class Distinction
 					$this->reqActivites->bindValue(':annee_fin', $val['annee_fin'], PDO::PARAM_INT);
 					$resultat = $this->reqActivites->execute();
 					
-				    $this->reqActivitesAutre->bindValue(':fonction_autre', $val['fonction_autre'], PDO::PARAM_INT);
+				    $this->reqActivitesAutre->bindValue(':fonction_autre', $val['fonction_autre'], PDO::PARAM_STR);
                 	//$this->reqActivitesAutre->bindValue(':id_activite', $this->reqActivites->lastInsertId() , PDO::PARAM_INT);
             		$resultat = $this->reqActivitesAutre->execute();
             		
